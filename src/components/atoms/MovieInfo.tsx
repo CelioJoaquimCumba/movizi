@@ -8,7 +8,7 @@ type MovieInfo = {
 
 export const MovieInfo = ({date, schedule, title, seats, image}: MovieInfo) => {
     return(
-        <div className="flex p-4 justify-center items-start gap-2 rounded-xl bg-slate-900 w-full">
+        <div className="flex p-4 justify-center items-start gap-2 rounded-xl bg-slate-900 hover:bg-slate-800 w-full">
             <img className="rounded-xl object-cover w-32 aspect-[3/4]" src={image} alt={`${title} ticket`}/>
             <div className="flex flex-col items-start gap-4 flex-grow">
                 <span className="text-sm leading-5 font-semibold text-white self-stretch whitespace-nowrap">{title}</span>
