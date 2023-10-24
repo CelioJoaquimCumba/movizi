@@ -1,7 +1,7 @@
 export type ScheduleTime = {
     startTime : string,
     endTime: string
-    onClick: () => void
+    onClick?: () => void
 }
 
 export const ScheduleTime = ({startTime, endTime, onClick}: ScheduleTime) => {
