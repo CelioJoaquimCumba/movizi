@@ -1,14 +1,8 @@
 import { useState } from "react"
+import { Comment as props } from "../../models/Comment"
 
-type Comment = {
-    text: string,
-    timeStamp: string,
-    username: string,
-    profileImage: string
-    comments: Comment[]
-}
 
-export const Comment = ({text, timeStamp, username, profileImage, comments}: Comment) => {
+export const Comment = ({text, timeStamp, username, profileImage, comments}: props) => {
     const [expanded, setExpanded] = useState(false)
 
     const handleClick = () => {
@@ -34,7 +28,7 @@ export const Comment = ({text, timeStamp, username, profileImage, comments}: Com
                 </svg>
                 <span className="text-xs leading-4 font-normal text-white">replies ({comments.length})</span>
             </div>}
-            <div className={`flex ps-4 ${ !expanded && "hidden"} `}>
+            <div className={`flex flex-col ps-4 ${ !expanded && "hidden"} `}>
                 {comments.length > 0 
                 &&
                 comments.map((comment)=> <Comment text={comment.text} profileImage={comment.profileImage} timeStamp={comment.timeStamp} username={comment.username} comments={[]}/>)
