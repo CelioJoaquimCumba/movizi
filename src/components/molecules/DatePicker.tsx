@@ -16,6 +16,10 @@ const monthsOfYear = [
     "November",
     "December"
   ];
+type DatePicker = {
+    startDate: {day: number, month:number, year:number}
+    endDate:{day: number, month:number, year:number}
+}
 
 export const DatePicker = () => {
     const date = new Date()
@@ -24,6 +28,11 @@ export const DatePicker = () => {
     const [days, setDays]  = useState(getDaysOfMonth(year,month))
     const [selectedDate, setSelectedDate] = useState("")
     const [isOpen, setIsOpen] = useState(false)
+    const [intervals, setIntervals] = useState([1,days.length])
+
+    // const validateDay = () => {
+    //     if(startDate.year === year)
+    // }
 
     const handleDateRange = (isForward: boolean) => {
         if( !isForward ) {
