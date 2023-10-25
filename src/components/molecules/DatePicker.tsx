@@ -30,16 +30,29 @@ export const DatePicker = ({startDate,endDate}:DatePicker) => {
     const [isOpen, setIsOpen] = useState(false)
 
     let startAt = 0
-    if(startDate.year === year){
-        if (startDate.month <= month) {
+    if(startDate.year <= year){
+        if (startDate.month === month) {
             startAt = startDate.day
+        } else if (startDate.month > month) {
+            startAt = 32
+        }else {
+            startAt = 0
         }
+    } else {
+        startAt = 32
     }
     let endAt = 32
-    if(endDate.year === year){
-        if (endDate.month === month) {
+    if(endDate.year >= year){
+        if (endDate.month >= month) {
             endAt = endDate.day
         }
+        else if (endDate.month < month) {
+            endAt = 32
+        }else {
+            endAt = 0
+        }
+    } else {
+        endAt = 0
     }
 
     const handleDateRange = (isForward: boolean) => {
@@ -102,8 +115,7 @@ export const DatePicker = ({startDate,endDate}:DatePicker) => {
                         return(
                             <div key={index} className="flex items-start gap-2">
                                 {array.map((day)=> {
-                                    const disable = !(startAt < Number(day) && endAt > Number(day))
-                                    console.log(startAt, Number(day), endAt)
+                                    const disable = !(startAt <= Number(day) && endAt >= Number(day))
                                     return(
                                         day && <DateDay disabled={disable} onClick={()=>handleSelect(day)} key={day} day={day}/>
                                     )
