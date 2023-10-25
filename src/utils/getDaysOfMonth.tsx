@@ -1,5 +1,5 @@
-export const getDaysOfMonth = (year: number, month:number): Array<Array<string>> => {
-    const daysInMonth = new Date(year, month, 0).getDate();
+export const getDaysOfMonth = (year:number, month:number):Array<Array<string>> => {
+    const daysInMonth = new Date(Date.UTC(year, month, 0)).getUTCDate();
   
     const matrix = [];
     let week = [];
@@ -18,7 +18,6 @@ export const getDaysOfMonth = (year: number, month:number): Array<Array<string>>
       week.push('');
     }
     matrix.push(week);
-  
   
     return matrix;
   }

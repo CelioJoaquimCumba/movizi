@@ -21,9 +21,28 @@ export const DatePicker = () => {
     const date = new Date()
     const [ month, setMonth ] = useState(date.getMonth())
     const [year, setYear] = useState(date.getFullYear())
-    const [days, setDays]  = useState(getDaysOfMonth(year,month +1 ))
+    const [days, setDays]  = useState(getDaysOfMonth(year,month))
     const [selectedDate, setSelectedDate] = useState("Select a date")
-    
+
+    const handleDateRange = (isForward: boolean) => {
+        if( !isForward ) {
+            if (month === 0) {
+                setMonth(11)
+                setYear((year) => year -1)
+            } else {
+                setMonth(month => month - 1)
+            }
+        } else {
+            if(month === 11) {
+                setMonth(0)
+                setYear(year=> year+1)
+            } else {
+                setMonth(month => month + 1)
+            }
+        }
+        setDays(getDaysOfMonth(year,month ))
+    }
+
     return(
         <div className="flex py-4 px-2 flex-col items-center gap-2 rounded border-2 border-slate700 bg-black w-full">
             <div className="flex justify-content items-center gap-2 self-stretch">
@@ -36,11 +55,11 @@ export const DatePicker = () => {
                 </svg>
             </div>
             <div className="flex justify-center items-start gap-2 self-stretch">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none" className="hover:bg-slate-800 rounded" onClick={()=>handleDateRange(false)}>
                     <path d="M12.4998 15.8333L6.6665 10L12.4998 4.16667" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
                 <span className="text-base leading-6 font-normal text-white">{monthsOfYear[month]} {year}</span>
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none" className="hover:bg-slate-800 rounded" onClick={()=>handleDateRange(true)}>
                     <path d="M7.5 4.16667L13.3333 10L7.5 15.8333" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
             </div>
