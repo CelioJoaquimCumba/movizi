@@ -1,24 +1,20 @@
 export const getDaysOfMonth = (year:number, month:number):Array<Array<string>> => {
-    const daysInMonth = new Date(Date.UTC(year, month, 0)).getUTCDate();
-  
-    const matrix = [];
-    let week = [];
-  
-    // Fill in the matrix with the days of the month
-    for (let day = 1; day <= daysInMonth; day++) {
-      week.push(day.toString());
-      if (week.length === 7) {
-        matrix.push(week);
-        week = [];
+  const daysInMonth = new Date(year, month+1, 0).getDate();
+  const matrix: Array<Array<string>> = [];
+  let day = 1;
+
+  for (let week = 0; day <= daysInMonth; week++) {
+    matrix[week] = [];
+    for (let weekday = 0; weekday < 7; weekday++) {
+      if (day <= daysInMonth) {
+        matrix[week][weekday] = day.toString();
+        day++;
+      } else {
+        matrix[week][weekday] = "";
       }
     }
-  
-    // Fill in empty cells in the last row, if necessary
-    while (week.length < 7) {
-      week.push('');
-    }
-    matrix.push(week);
-  
-    return matrix;
+  }
+
+  return matrix;
   }
   

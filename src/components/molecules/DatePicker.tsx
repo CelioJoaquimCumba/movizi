@@ -21,36 +21,50 @@ type DatePicker = {
     endDate:{day: number, month:number, year:number}
 }
 
-export const DatePicker = () => {
+export const DatePicker = ({startDate,endDate}:DatePicker) => {
     const date = new Date()
     const [ month, setMonth ] = useState(date.getMonth())
     const [year, setYear] = useState(date.getFullYear())
     const [days, setDays]  = useState(getDaysOfMonth(year,month))
     const [selectedDate, setSelectedDate] = useState("")
     const [isOpen, setIsOpen] = useState(false)
-    const [intervals, setIntervals] = useState([1,days.length])
 
-    // const validateDay = () => {
-    //     if(startDate.year === year)
-    // }
+    let startAt = 0
+    if(startDate.year === year){
+        if (startDate.month <= month) {
+            startAt = startDate.day
+        }
+    }
+    let endAt = 32
+    if(endDate.year === year){
+        if (endDate.month === month) {
+            endAt = endDate.day
+        }
+    }
 
     const handleDateRange = (isForward: boolean) => {
+        let newMonth = month
+        let newYear = year
         if( !isForward ) {
-            if (month === 0) {
+            if (newMonth === 0) {
                 setMonth(11)
-                setYear((year) => year -1)
+                newYear = year -1
+                setYear(newYear)
             } else {
-                setMonth(month => month - 1)
+                newMonth = month - 1
+                setMonth(newMonth)
             }
         } else {
             if(month === 11) {
                 setMonth(0)
-                setYear(year=> year+1)
+                newYear = year + 1
+                setYear(newYear)
             } else {
-                setMonth(month => month + 1)
+                newMonth = month + 1
+                setMonth(newMonth)
             }
         }
-        setDays(getDaysOfMonth(year,month ))
+        setDays(()=>getDaysOfMonth(year,newMonth))
     }
     const handleSelect = (day: string) => {
         setSelectedDate(`${day}-${monthsOfYear[month]}-${year}`)
@@ -87,7 +101,13 @@ export const DatePicker = () => {
                     {days.map((array, index) => {
                         return(
                             <div key={index} className="flex items-start gap-2">
-                                {array.map(day=> day && <DateDay onClick={()=>handleSelect(day)} key={day} day={day}/>)}
+                                {array.map((day)=> {
+                                    const disable = !(startAt < Number(day) && endAt > Number(day))
+                                    console.log(startAt, Number(day), endAt)
+                                    return(
+                                        day && <DateDay disabled={disable} onClick={()=>handleSelect(day)} key={day} day={day}/>
+                                    )
+                                    })}
                             </div>
                         )
                     })}
