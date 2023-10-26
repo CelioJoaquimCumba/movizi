@@ -12,7 +12,7 @@ export const CardMovie = ({image, title, genre, duration, language, ranking, ori
                     <div className={`flex h-full rounded-lg  p-1 flex-col justify-end items-center gap-2 flex-shrink-0  ${type === "default" && "bg-gradient-to-t from-black hover:from-slate-900 to-transparent"}`}>
                         <div className="flex flex-col justify-end items-center gap-2 self-stretch">
                             <span className="text-sm leading-5 font-semibold text-white text-center">{title}</span>
-                            <span className="text-xs leading-4 font-normal text-white">{genre} | {duration} | {language}</span>
+                            <span className="text-xs leading-4 font-normal text-white text-center">{genre} | {duration} | {language}</span>
                             <Button text="Get Ticket"/>
                         </div>
                     </div>
