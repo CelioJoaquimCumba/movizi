@@ -7,7 +7,7 @@ type MovieChartItem = {
 
 export const MovieChartItem = ({ranking, bookings, title, image}: MovieChartItem) => {
     return(
-        <div className="flex p-2 justify-center items-center gap-2 rounded-lg bg-slate-900 hover:bg-slate-800">
+        <div className="flex p-2 justify-center items-center gap-2 rounded-lg bg-slate-900 hover:bg-slate-800 w-full">
             <div className="flex py-4 justify-center items-center gap-2 self-stretch">
                 <span className="text-4xl leading-10 font-black text-white">
                     {ranking}
