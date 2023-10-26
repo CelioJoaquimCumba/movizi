@@ -7,7 +7,7 @@ type CardMovie = {
 } & Movie
 export const CardMovie = ({image, title, genre, duration, language, ranking, orientation = "vertical", type = "default"}: CardMovie) => {
     return(
-        <div style={{ backgroundImage: `url(${type === "default" || orientation === "vertical" ? image.portrait: image.landscape}})`, backgroundSize: "cover" }} className={` ${type === "default" || orientation === "vertical" ? "aspect-[3/4]" : "aspect-[4/3]"} rounded-lg h-72 flex flex-col justify-end hover:cursor-pointer`}>
+        <div style={{ backgroundImage: `url(${type === "default" || orientation === "vertical" ? image.portrait: image.landscape}})`, backgroundSize: "cover" }} className={` ${type === "default" || orientation === "vertical" ? "aspect-[3/4]" : "aspect-[4/2]"} rounded-lg h-72 ${type === "rank" && "h-full"} flex flex-col justify-end hover:cursor-pointer w-full`}>
                 { type === "default" ?
                     <div className={`flex h-full rounded-lg  p-1 flex-col justify-end items-center gap-2 flex-shrink-0  ${type === "default" && "bg-gradient-to-t from-black hover:from-slate-900 to-transparent"}`}>
                         <div className="flex flex-col justify-end items-center gap-2 self-stretch">
