@@ -1,82 +1,74 @@
 import './App.css'
+import { MovieList } from './components/organisms/MovieList';
 import { MovieReview } from './components/organisms/MovieReview'
+import { TopMovies } from './components/organisms/TopMovies';
 import { Comment } from './models/Comment';
-const comments: Comment[] = [
+import { Movie } from './models/Movie';
+
+const movies: Movie[] = [
     {
-        text: "I just saw the new Spider-Man movie, and it was AMAZING! Tom Holland is the perfect Spidey! 🕷️ #SpiderManRocks",
-        timeStamp: "2023-10-26 13:00 PM",
-        username: "John Lock",
-        profileImage: "https://randomuser.me/api/portraits/men/22.jpg",
-        comments: [{
-            text: "I've been a Spidey fan since the Tobey Maguire days, but Tom Holland's portrayal has brought a fresh and youthful energy to the character. Great movie! 🕸️",
-            timeStamp: "2023-10-26 13:15 PM",
-            username: "Edna Harvey",
-            profileImage: "https://randomuser.me/api/portraits/women/51.jpg",
-            comments: []
-        },]
+        title: "Spider-Man: No Way Home",
+        genre: "Action, Adventure",
+        duration: "2h 28m",
+        language: "English",
+        ranking: 9.2,
+        image: {
+            portrait: "https://m.media-amazon.com/images/M/MV5BZWMyYzFjYTYtNTRjYi00OGExLWE2YzgtOGRmYjAxZTU3NzBiXkEyXkFqcGdeQXVyMzQ0MzA0NTM@._V1_FMjpg_UX1000_.jpg",
+            landscape: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdn-8V3HcPD9Gul0Otnmuk0SZOeGgZSzemyg&usqp=CAU"
+        }
     },
     {
-        text: "The villain in this Spider-Man movie was seriously compelling. Michael Keaton's Vulture is one of the best Spidey villains to date. 🦅",
-        timeStamp: "2023-10-26 14:00 PM",
-        username: "Irene Barnett",
-        profileImage: "https://randomuser.me/api/portraits/women/96.jpg",
-        comments: [{
-            text: "The VFX in the Spider-Man movie were mind-blowing! The swinging scenes through New York City were a visual treat. 🏙️🕷️",
-            timeStamp: "2023-10-26 13:30 PM",
-            username: "Charles Barnet",
-            profileImage: "https://randomuser.me/api/portraits/men/94.jpg",
-            comments: []
-        },
-        {
-            text: "Can we talk about that post-credit scene? Mind = Blown! 🌌🚀 I can't wait for the next installment.",
-            timeStamp: "2023-10-26 13:45 PM",
-            username: "Michele herera",
-            profileImage: "https://randomuser.me/api/portraits/women/34.jpg",
-            comments: []
-        },]
+        title: "Inception",
+        genre: "Science Fiction, Action",
+        duration: "2h 28m",
+        language: "English",
+        ranking: 8.8,
+        image: {
+            portrait: "https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_.jpg",
+            landscape: "https://frontmediaspot.com/wp-content/uploads/2023/07/Inception-3.jpg"
+        }
     },
     {
-        text: "I love how the movie explores the responsibility that comes with having superpowers. It's not just about fighting bad guys, but also protecting the ones you love. 🦸‍♂️❤️",
-        timeStamp: "2023-10-26 14:15 PM",
-        username: "Brad Gonzalez",
-        profileImage: "https://randomuser.me/api/portraits/men/1.jpg",
-        comments: [{
-        text: "Anyone catch all those Easter eggs and references to the comics? The attention to detail is incredible! 📚🔎",
-        timeStamp: "2023-10-26 14:30 PM",
-        username: "Normam Graves",
-        profileImage: "https://randomuser.me/api/portraits/men/26.jpg",
-        comments: []
+        title: "Batman: The Dark Knight",
+        genre: "Action, Crime, Drama",
+        duration: "2h 32m",
+        language: "English",
+        ranking: 9.0,
+        image: {
+            portrait: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQrRqDGEcfU3bXhqsGxvmL9KF-hgzeyZ-KqgA&usqp=CAU",
+            landscape: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-_Xn7je5rFvtaAWdc0GLh3nXwwVcuavdCQA&usqp=CAU"
+        }
     },
     {
-        text: "I watched it in IMAX, and the action sequences were next level. Felt like I was swinging through the city with Spidey! 🎥🕷️",
-        timeStamp: "2023-10-26 14:45 PM",
-        username: "Jeanne Lopez",
-        profileImage: "https://randomuser.me/api/portraits/women/39.jpg",
-        comments: []
+        title: "Pulp Fiction",
+        genre: "Crime, Drama",
+        duration: "2h 34m",
+        language: "English",
+        ranking: 8.9,
+        image: {
+            portrait: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSa4QvYfXtwKBQjRQNmO_tC5tsIthuJlPwrcQ&usqp=CAU",
+            landscape: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3sk5giX0bysKdAyQr9p4x49yRXpDtTby0iA&usqp=CAU"
+        }
     },
     {
-        text: "The humor in the Spider-Man movies is on point! Peter's quips and banter make every scene a delight. 😂👌",
-        timeStamp: "2023-10-26 15:00 PM",
-        username: "Holly Ortiz",
-        profileImage: "https://randomuser.me/api/portraits/women/52.jpg",
-        comments: []
-    },
-    {
-        text: "This movie is a must-watch for any Spider-Man fan. It delivers on every level – action, heart, and Spidey's classic charm. 🕷️❤️",
-        timeStamp: "2023-10-26 15:15 PM",
-        username: "Same Matthews",
-        profileImage: "https://randomuser.me/api/portraits/men/49.jpg",
-        comments: []
-    }]
-    },
-    
+        title: "The Shawshank Redemption",
+        genre: "Drama",
+        duration: "2h 22m",
+        language: "English",
+        ranking: 9.3,
+        image: {
+            portrait: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEIVI9fzyx1aiKQ8tfCJv0QXnOSTF_wHYUfg&usqp=CAU",
+            landscape: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTC64jeO7HbbxTPS4DYyYpOtZqgwEUVhhjrQ&usqp=CAU"
+        }
+    }
 ];
 function App() {
 
   return (
     <div className="bg-white w-screen h-screen flex justify-center items-start">
-      <div className='w-full bg-white p-4 flex justify-center'>
-      <MovieReview comments={comments}/>
+      <div className='w-full bg-white p-4 flex flex-col justify-center'>
+      <TopMovies movies={movies.map((movie) => movie)}/>
+      <MovieList heading="Popular Movies" movies={movies.map((movie) => movie)}/>
       </div>
     </div>
   )
