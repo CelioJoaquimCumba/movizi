@@ -3,6 +3,7 @@ export type Movie = {
     genre: string,
     duration: string,
     language: string,
-    ranking?: string,
+    ranking?: number,
     image: { portrait:string, landscape: string}
+    bookings?: number
 }
