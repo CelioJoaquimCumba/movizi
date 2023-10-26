@@ -9,7 +9,7 @@ export const TopMovies = ({movies}:TopMovies) => {
     return(
         <div className="flex flex-col items-start gap-2 w-full">
             <h1 className="text-xl leading-7 font-semibold text-white">Top Movies This Week</h1>
-            <div className=" hidden md:flex flex-row items-start gap-2 self-stretch bg-red-500">
+            <div className=" hidden md:flex flex-row items-start gap-2 self-stretch ">
                 <CardMovie type="rank" orientation="vertical" {...movies[0]}/>
                 <div className="flex flex-col items-start gap-2  self-stretch w-full">
                     <CardMovie type="rank" orientation="horizontal" {...movies[1]}/>
