@@ -1,11 +1,11 @@
 import { useState } from "react"
 import { ScheduleTime } from "../atoms/ScheduleTime"
 
-type Schedule = {
+export type SchedulePicker = {
     schedules : ScheduleTime[]
 }
 
-export const Schedule = ({schedules}: Schedule) => {
+export const SchedulePicker = ({schedules}: SchedulePicker) => {
     const [selected, setSelected] = useState(schedules[0])
     const [isOpen, setIsOpen] = useState(false)
     const handleOpen = () => setIsOpen(isOpen => !isOpen)
