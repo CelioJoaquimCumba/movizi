@@ -3,15 +3,17 @@ import { PaymentMethod } from "../atoms/PaymentMethod"
 
 type PaymentType = {
     PaymentTypes : string[]
+    onClick: (selected:string) => void
 }
 
-export const PaymentType = ({PaymentTypes}: PaymentType) => {
+export const PaymentType = ({PaymentTypes, onClick}: PaymentType) => {
     const [selected, setSelected] = useState(PaymentTypes[0])
     const [isOpen, setIsOpen] = useState(false)
     const handleOpen = () => setIsOpen(isOpen => !isOpen)
     const handleSelected = (index: number) => {
         handleOpen()
         setSelected(PaymentTypes[index])
+        onClick(PaymentTypes[index])
     }
     return(
         <div className="flex flex-col  items-center rounded border-2 border-slate-700 bg-black text-white  w-full">
