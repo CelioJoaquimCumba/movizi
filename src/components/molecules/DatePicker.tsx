@@ -16,7 +16,7 @@ const monthsOfYear = [
     "November",
     "December"
   ];
-type DatePicker = {
+export type DatePicker = {
     startDate: {day: number, month:number, year:number}
     endDate:{day: number, month:number, year:number}
 }
@@ -30,7 +30,7 @@ export const DatePicker = ({startDate,endDate}:DatePicker) => {
     const [isOpen, setIsOpen] = useState(false)
 
     let startAt = 0
-    if(startDate.year <= year){
+    if(startDate.year === year){
         if (startDate.month === month) {
             startAt = startDate.day
         } else if (startDate.month > month) {
@@ -38,22 +38,25 @@ export const DatePicker = ({startDate,endDate}:DatePicker) => {
         }else {
             startAt = 0
         }
-    } else {
+    } else if (startDate.year > year ) {
         startAt = 32
+    } else {
+        startAt = 0
     }
     let endAt = 32
-    if(endDate.year >= year){
-        if (endDate.month >= month) {
+    if(endDate.year === year){
+        if (endDate.month === month) {
             endAt = endDate.day
         }
-        else if (endDate.month < month) {
-            endAt = 32
-        }else {
+        else {
             endAt = 0
         }
-    } else {
+    } else if (endDate.year < year ) {
         endAt = 0
+    } else {
+        endAt = 32
     }
+    console.log(startDate,startAt,endDate,endAt,month)
 
     const handleDateRange = (isForward: boolean) => {
         let newMonth = month
