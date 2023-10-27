@@ -1,4 +1,3 @@
-import { useState } from "react"
 import { BookingItem } from "../atoms/BookingItem"
 
 export type BookingSummary = {
