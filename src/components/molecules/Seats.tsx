@@ -20,7 +20,6 @@ export const Seats = ({row, column, start, sold}: Seats) => {
         }
         matrix.push(array)
     }
-    console.log(sold.some(obj => obj.row === 1 && obj.column === 2))
     return(
         <div className="flex flex-col gap-1 items-start">
             {
