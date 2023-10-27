@@ -3,7 +3,7 @@ import { TicketInfo } from "../atoms/TicketInfo"
 import QRCode from "react-qr-code"
 
 
-export const Ticket = ({date, room, seat, movie, image, qrCode, orientation = "vertical"}: props) => {
+export const Ticket = ({date, room, seats, movie, image, qrCode, orientation = "vertical"}: props) => {
     return (
         <div className={`flex p-1 ${orientation === "vertical" ? "flex-col" : "flex-row"} items-start rounded-2xl border-slate-700`}>
             <div className={`flex py-4 px-2 flex-col items-start gap-2 self-stretch ${orientation === "vertical" ? "rounded-t-2xl" : "rounded-s-2xl"} bg-black `}>
@@ -20,7 +20,7 @@ export const Ticket = ({date, room, seat, movie, image, qrCode, orientation = "v
                     <TicketInfo attribute="Movie" value={movie}/>
                     <TicketInfo attribute="Date" value={date}/>
                     <TicketInfo attribute="Room" value={room.toString()}/>
-                    <TicketInfo attribute="Seat" value={seat}/>
+                    <TicketInfo attribute="Seat" value={seats.toString()}/>
                 </div>
                 <div className={` border-white border-dashed border-2 ${orientation === "vertical" ? "h-1 w-full" : "h-full w-1"}  `}></div>
                 <QRCode
