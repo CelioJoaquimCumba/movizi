@@ -41,7 +41,7 @@ const MovieQuote = () => {
 
     return (
         <div className={`quote-container transition-opacity duration-500 ease-in-out ${quoteVisible ? '' : 'opacity-0'} flex flex-col items-center gap-8 flex-shrink-0 object-cover`}>
-            <img src={quotes[currentQuoteIndex].image} alt="Movie" className="w-96 h-96 flex-shrink-0 aspect-square rounded-lg" />
+            <img src={quotes[currentQuoteIndex].image} alt="Movie" className="w-96 flex-shrink-0 aspect-square rounded-lg" />
             <div className='flex flex-col justify-end items-center gap-2 self-stretch w-full'>
                 <span className="text-base leading-6 font-normal text-white w-full">
                     “{quotes[currentQuoteIndex].quote}”
