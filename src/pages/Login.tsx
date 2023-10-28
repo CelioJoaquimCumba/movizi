@@ -16,8 +16,8 @@ export const Login = () => {
                         <p className="text-base leading-6 font-normal text-white w-full">Welcome Back! Please enter your credentials</p>
                     </div>
                     <form className="flex flex-col justify-center items-center gap-4 self-stretch">
-                        <Input label={"Email"} placeholder={"name@domain.com"}/>
-                        <Input label={"Password"} placeholder={"********"}/>
+                        <Input type="email" label={"Email"} placeholder={"name@domain.com"}/>
+                        <Input type="password" label={"Password"} placeholder={"********"}/>
                         <Button style={{width:"100%"}} text={"Login"}/>
                         <Button style={{width:"100%"}} type="google-auth" text={"Login with Google"}/>
                         <div className="flex justify-center items-center gap-2 self-stretch">
