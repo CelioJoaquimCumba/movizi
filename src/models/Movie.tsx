@@ -9,5 +9,5 @@ export type Movie = {
     rating?: number,
     description?: string,
     directors?: string,
-    caption: string
+    caption?: string
 }
