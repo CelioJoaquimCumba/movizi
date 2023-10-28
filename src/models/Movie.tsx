@@ -5,5 +5,9 @@ export type Movie = {
     language: string,
     ranking?: number,
     image: { portrait:string, landscape: string}
-    bookings?: number
+    bookings?: number,
+    rating?: number,
+    description?: string,
+    directors?: string,
+    caption: string
 }
