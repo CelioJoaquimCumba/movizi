@@ -14,7 +14,7 @@ export const Button = ({type= "default", text, ...props} : Button) => {
         active: "bg-slate-800"
     }
     return (
-        <button className={`flex items-center text-base leading-6 font-medium gap-2.5 py-2 px-4 rounded-lg text-white ${bg.default}  hover:${bg.hover} active:${bg.active}`} {...props}>
+        <button className={`flex items-center justify-center text-base leading-6 font-medium gap-2.5 py-2 px-4 rounded-lg text-white ${bg.default}  hover:${bg.hover} active:${bg.active}`} {...props}>
             {type === "google-auth" && 
              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
                 <g clip-path="url(#clip0_1418_5120)">
