@@ -4,7 +4,7 @@ import MovieQuote from "../components/atoms/MovieQuote"
 
 export const Login = () => {
     return(
-        <div className="flex flex-col items-center gap-2 w-full h-full bg-black">
+        <div className="flex flex-col items-center gap-2 w-full h-full min-h-screen bg-black">
             <div className="flex py-2 px-4 items-center gap-2 self-stretch">
                 <span className="text-lg leading-7 font-black text-white flex-grow">MOVIZI</span>
             </div>
