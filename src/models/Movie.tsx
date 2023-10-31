@@ -1,3 +1,5 @@
+import { Comment } from "./Comment"
+
 export type Movie = {
     title: string,
     genre: string,
@@ -9,5 +11,7 @@ export type Movie = {
     rating?: number,
     description?: string,
     directors?: string,
-    caption?: string
+    caption?: string,
+    cast: Array<{image?: string, name:string, role?:string}>,
+    comments: Array<Comment>
 }
