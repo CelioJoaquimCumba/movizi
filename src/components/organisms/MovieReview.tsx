@@ -11,9 +11,9 @@ export const MovieReview = ({comments}:MovieReview) => {
             <h1 className="text-xl leading-7 font-semibold text-white text-center">Reviews</h1>
             <div className="flex flex-col items-start gap-4 self-stretch">
                 <CreateComment username={"Zoe Hernandez"} profileImage={"https://randomuser.me/api/portraits/women/16.jpg"}/>
-                {comments.map((comment) =>{
+                {comments.map((comment,index) =>{
                     return(
-                        <Comment text={comment.text} timeStamp={comment.timeStamp} username={comment.username} profileImage={comment.profileImage} comments={comment.comments}/>
+                        <Comment key={index} text={comment.text} timeStamp={comment.timeStamp} username={comment.username} profileImage={comment.profileImage} comments={comment.comments}/>
                     )
                 })}
             </div>

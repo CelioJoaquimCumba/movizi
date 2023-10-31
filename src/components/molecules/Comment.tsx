@@ -31,7 +31,7 @@ export const Comment = ({text, timeStamp, username, profileImage, comments}: pro
             <div className={`flex flex-col ps-4 ${ !expanded && "hidden"} `}>
                 {comments.length > 0 
                 &&
-                comments.map((comment)=> <Comment text={comment.text} profileImage={comment.profileImage} timeStamp={comment.timeStamp} username={comment.username} comments={[]}/>)
+                comments.map((comment, index)=> <Comment key={index} text={comment.text} profileImage={comment.profileImage} timeStamp={comment.timeStamp} username={comment.username} comments={[]}/>)
                 }
             </div>
         </div>
