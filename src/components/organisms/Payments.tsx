@@ -11,7 +11,7 @@ export const Payments = () => {
 
     }
     return(
-        <div className="flex flex-col items-start gap-2">
+        <div className="flex flex-col items-start gap-2 w-full">
             <span className="text-base leading-6 font-medium text-white">Payment</span>
             <PaymentType PaymentTypes={paymentType} onClick={(selected)=>handleSelection(selected)}/>
             {selected === "Credit Card" ? 
