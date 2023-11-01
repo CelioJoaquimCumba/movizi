@@ -128,9 +128,6 @@ const laptop = (
                 <div className="flex  py-8 px-14 flex-col justify-center items-center gap-8 self-stretch rounded-2xl bg-black bg-opacity-75 w-full">
                     <FormProgress index={1}/>
                     <MovieHeader title={title} genre={genre} duration={duration} language={language} image={image} cast={cast} comments={comments} directors={directors} description={description} rating={rating} caption={caption}/>
-                    <div className="flex flex-col items-end justify-center gap-2 self-stretch">
-                        <Button text={"Get Ticket"}/>
-                    </div>
                     <div className="flex flex-col items-center gap-4 self-stretch">
                         <div className="flex py-4 px-2 flex-col justify-end items-end gap-2 self-stretch rounded-lg">
                             {/* <div className="flex justify-center items-start gap-2 self-stretch"> */}
