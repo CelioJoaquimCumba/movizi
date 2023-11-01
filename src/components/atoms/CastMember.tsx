@@ -1,7 +1,7 @@
 export type CastMember = {
-    image: string,
+    image?: string,
     name: string,
-    role: string
+    role?: string
 }
 
 export const CastMember = ({image, name, role}: CastMember) => {
