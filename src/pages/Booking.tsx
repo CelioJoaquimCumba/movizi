@@ -4,7 +4,6 @@ import { NavBar } from "../components/molecules/NavBar"
 import { FormProgress } from "../components/organisms/FormProgress";
 import { Movie } from "../models/Movie";
 import { MovieDetails as MovieHeader } from '../components/organisms/MovieDetails'
-import { Cast } from "../components/organisms/Cast";
 import { Date } from "../components/organisms/Date";
 import { Schedule } from "../components/organisms/Schedule";
 import { Seatings } from "../components/organisms/Seating";
