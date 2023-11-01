@@ -3,7 +3,7 @@ import { Seats } from "../molecules/Seats"
 type SeatsForm = {
     soldSeats: string[]
 }
-export const SeatsForm = ({soldSeats}:SeatsForm) => {
+export const Seatings = ({soldSeats}:SeatsForm) => {
     const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
     const parseSeatString = (seatString:string) => {
         const row = alphabet.indexOf(seatString[0].toUpperCase()) + 1;
@@ -12,7 +12,7 @@ export const SeatsForm = ({soldSeats}:SeatsForm) => {
     };
     const soldSeatObjects = soldSeats && soldSeats.map(parseSeatString);
     return(
-        <div className="flex py-4 px-2 flex-col items-start gap-2 rounded ">
+        <div className="flex py-4 px-2 flex-col items-start gap-2 rounded w-full">
             <h1 className="text-white text-lg leading-7 font-normal w-full">Seating Layout</h1>
             <div className="flex py-4 px-2 flex-col justify-end items-center gap-2 self-stretch rounded bg-black">
                 <div className="flex items-end gap-2 self-stretch ">
