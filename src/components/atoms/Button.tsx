@@ -1,11 +1,12 @@
 export type Button = {
     type? : "default" | "google-auth"
-    text: string
+    text: string,
+    background?: string
 } & React.HTMLProps<HTMLButtonElement>
 
-export const Button = ({type= "default", text, ...props} : Button) => {
+export const Button = ({type= "default", text,background, ...props} : Button) => {
     const bg = type === "default" ? {
-        default : "bg-slate-500",
+        default : background ?background:"bg-slate-500",
         hover: "bg-slate-800",
         active: "bg-slate-900"
     } : {
