@@ -66,8 +66,25 @@ const {cast,title, image, genre, duration, language, description, rating, commen
             comments: [] // Empty array for comments
         }
         // You can add more comments here
-    ]
+    ],
+
 }
+const {startDate, endDate, schedules,soldSeats, items} = {
+            startDate:{
+                day: 1,
+                month: 9,
+                year: 2023
+            },
+            endDate:{
+                day: 20,
+                month: 11,
+                year: 2023
+            },
+            schedules : [{startTime: "12h 30m", endTime:"14h"},{ startTime:"15h 15m", endTime:"16h"},{startTime:"17h 30m", endTime:"19h"},{startTime:"20h 30m", endTime:"21h"}],
+            soldSeats:["A1","A2"],
+            items: [{item:"ticket seat B4",price:100, quantity:1},{item:"Ticket seat B5",price:100, quantity:1},{item:"Ticket seat B6",price:100, quantity:1}]
+            
+        }
 export const Booking = () => {
     return(
         <div className="w-full h-full">
@@ -91,18 +108,10 @@ const phone = (
             </div>
         <div className="flex px-4 flex-col items-start gap-2 flex-grow self-stretch bg-black">
             <MovieAspects heading={"'"+title+"'"+ " Booking"} text={""}/>
-            <Date startDate={{
-                day: 1,
-                month: 9,
-                year: 2023
-            }} endDate={{
-                day: 20,
-                month: 11,
-                year: 2023
-            }}/>
-            <Schedule schedules={[{startTime: "12h 30m", endTime:"14h"},{ startTime:"15h 15m", endTime:"16h"},{startTime:"17h 30m", endTime:"19h"},{startTime:"20h 30m", endTime:"21h"}]}/>
-            <Seatings soldSeats={[]}/>
-            <BookingSummary items={[{item:"ticket seat B4",price:100, quantity:1},{item:"Ticket seat B5",price:100, quantity:1},{item:"Ticket seat B6",price:100, quantity:1}]}/>
+            <Date startDate={startDate} endDate={endDate}/>
+            <Schedule schedules={schedules}/>
+            <Seatings soldSeats={soldSeats}/>
+            <BookingSummary items={items}/>
             <div className="flex w-full justify-end">
                 <Button text={"Checkout"}/>
             </div>
@@ -114,18 +123,31 @@ const phone = (
 
 const laptop = (
     <div className="w-full h-full flex flex-col items-start  " style={{ backgroundImage: `url(${image.portrait}})`, backgroundSize: "cover" }}>
-        <div className="flex flex-col items-start gap-2 w-full h-full bg-gradient-to-t from-black to-transparent">
+        <div className="flex flex-col items-start gap-2 w-full h-full bg-gradient-to-t via-black from-black to-transparent">
             <NavBar/>
             <div className="flex py-16 px-24 flex-grow w-full">
                 <div className="flex  py-8 px-14 flex-col justify-center items-center gap-8 self-stretch rounded-2xl bg-black bg-opacity-75 w-full">
-                    <FormProgress index={0}/>
+                    <FormProgress index={1}/>
                     <MovieHeader title={title} genre={genre} duration={duration} language={language} image={image} cast={cast} comments={comments} directors={directors} description={description} rating={rating} caption={caption}/>
                     <div className="flex flex-col items-end justify-center gap-2 self-stretch">
                         <Button text={"Get Ticket"}/>
                     </div>
-                    <Cast cast={cast}/>
+                    <div className="flex flex-col items-center gap-4 self-stretch">
+                        <div className="flex py-4 px-2 flex-col justify-end items-end gap-2 self-stretch rounded-lg">
+                            {/* <div className="flex justify-center items-start gap-2 self-stretch"> */}
+                                <Date startDate={startDate} endDate={endDate}/>
+                                <Schedule schedules={schedules}/>
+                            {/* </div> */}
+                            <Seatings soldSeats={soldSeats}/>
+                            <BookingSummary items={items}/>
+                            <div className="flex w-full justify-end">
+                                <Button text="Checkout"/>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
+            <Footer/>
 
 
         </div>
