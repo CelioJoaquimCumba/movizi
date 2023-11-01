@@ -3,12 +3,14 @@ import { MovieAspects } from "../components/atoms/MovieAspects";
 import { Rating } from "../components/atoms/Rating";
 import { Footer } from "../components/molecules/Footer";
 import { NavBar } from "../components/molecules/NavBar"
+import { FormProgress } from "../components/organisms/FormProgress";
 import { MovieList } from "../components/organisms/MovieList";
 import { MovieReview } from "../components/organisms/MovieReview";
-import { TopMovies } from "../components/organisms/TopMovies"
 import { Movie } from "../models/Movie";
+import { MovieDetails as MovieHeader } from '../components/organisms/MovieDetails'
+import { Cast } from "../components/organisms/Cast";
 
-const {cast,title, image, genre, duration, language, description, rating, comments}: Movie = {
+const {cast,title, image, genre, duration, language, description, rating, comments, directors, caption}: Movie = {
     title: "Spider-Man: No Way Home",
     genre: "Action, Adventure",
     duration: "2h 28m",
@@ -127,25 +129,9 @@ const movies: Movie[] = [
 ];
 export const MovieDetails = () => {
     return(
-        <div className="w-full h-full"  >
-            <div style={{ backgroundImage: `url(${image.portrait}})`, backgroundSize: "cover" }} className={`flex md:hidden flex-col items-start gap-2 self-stretch`}>
-                    {header}
-                </div>
-                {/* header for md */}
-            <div style={{ backgroundImage: `url(${image.landscape}})`, backgroundSize: "cover" }} className={`hidden md:flex flex-col items-start gap-2 self-stretch`}>
-                    {header}
-            </div>
-            <div className="flex px-4 flex-col items-start gap-2 flex-grow self-stretch bg-black md:collapse">
-                <MovieAspects heading={title} text={description}/>
-                <div className="flex justify-between items-start self-stretch">
-                    <MovieAspects heading={""} text={genre}/>
-                    <MovieAspects heading="" text={duration}/>
-                </div>
-                <MovieAspects heading="Cast" text={cast.map(castMember=>castMember.name).toString()}/>
-                <MovieList heading={"More Movies"} movies={movies}/>
-                <MovieReview comments={comments}/>
-                <Footer/>
-            </div>
+        <div className="w-full h-full">
+            <div className="w-full h-full md:hidden">{phone}</div>
+            <div className="hidden md:block w-full h-full">{laptop}</div>
         </div>
     )
 }
@@ -159,5 +145,51 @@ const header = (
                 <Button text="Book Now"/>
             </div>
         </div>
+    </div>
+)
+
+const phone = (
+    <div className="w-full h-full"  >
+        <div style={{ backgroundImage: `url(${image.portrait}})`, backgroundSize: "cover" }} className={`flex md:hidden flex-col items-start gap-2 self-stretch`}>
+                {header}
+            </div>
+            {/* header for md */}
+        <div style={{ backgroundImage: `url(${image.landscape}})`, backgroundSize: "cover" }} className={`hidden md:flex flex-col items-start gap-2 self-stretch`}>
+                {header}
+        </div>
+        <div className="flex px-4 flex-col items-start gap-2 flex-grow self-stretch bg-black">
+            <MovieAspects heading={title} text={description}/>
+            <div className="flex justify-between items-start self-stretch">
+                <MovieAspects heading={""} text={genre}/>
+                <MovieAspects heading="" text={duration}/>
+            </div>
+            <MovieAspects heading="Cast" text={cast.map(castMember=>castMember.name).toString()}/>
+            <MovieList heading={"More Movies"} movies={movies}/>
+            <MovieReview comments={comments}/>
+            <Footer/>
+        </div>
+    </div>
+)
+
+const laptop = (
+    <div className="w-full h-full flex flex-col items-start  " style={{ backgroundImage: `url(${image.portrait}})`, backgroundSize: "cover" }}>
+        <div className="flex flex-col items-start gap-2 w-full h-full bg-gradient-to-t from-black to-transparent">
+            <NavBar/>
+            <div className="flex py-16 px-24 flex-grow w-full">
+                <div className="flex  py-8 px-14 flex-col justify-center items-center gap-8 self-stretch rounded-2xl bg-black bg-opacity-75 w-full">
+                    <FormProgress index={0}/>
+                    <MovieHeader title={title} genre={genre} duration={duration} language={language} image={image} cast={cast} comments={comments} directors={directors} description={description} rating={rating} caption={caption}/>
+                    <div className="flex flex-col items-end justify-center gap-2 self-stretch">
+                        <Button text={"Get Ticket"}/>
+                    </div>
+                    <Cast cast={cast}/>
+                    <MovieList heading={"More Movies"} movies={movies}/>
+                    <MovieReview comments={comments}/>
+                </div>
+            </div>
+
+
+        </div>
+
     </div>
 )
