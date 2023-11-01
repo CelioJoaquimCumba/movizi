@@ -17,8 +17,8 @@ export const Register = () => {
                     </div>
                     <form className="flex flex-col justify-center items-center gap-4 self-stretch">
                         <div className="flex justify-start items-center gap-2 self-stretch ">
-                            <Input label={"First Name"} placeholder={"John"}/>
-                            <Input label={"First Name"} placeholder={"John"}/>
+                            <Input label={"First Name"} placeholder={"Joe"}/>
+                            <Input label={"Last Name"} placeholder={"Mama"}/>
                         </div>
                         <Input type="email" label={"Email"} placeholder={"name@domain.com"}/>
                         <Input type="password" label={"Password"} placeholder={"********"}/>
