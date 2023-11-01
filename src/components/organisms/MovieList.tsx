@@ -7,7 +7,7 @@ type MovieList = {
 }
 export const MovieList = ({heading, movies}: MovieList) => {
     return(
-        <div className="flex flex-col items-start gap-2 w-full">
+        <div className="flex flex-col items-start gap-2 w-full self-stretch">
             <h1 className="text-xl leading-7 font-semibold text-white">{heading}</h1>
             <div className="flex items-start justify-start gap-4 self-stretch overflow-auto">
                 {movies.map((movie) => {
