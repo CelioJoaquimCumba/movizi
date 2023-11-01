@@ -3,7 +3,7 @@ import { Rating } from "../atoms/Rating"
 
 export const MovieDetails = ({title, image, rating, genre, duration, language, description, directors, caption}: Movie) => {
     return(
-        <div className="flex justify-start items-center gap-2 w-full">
+        <div className="flex justify-start items-start gap-2 w-full">
             <img className="w-64 aspect-[3/4] rounded-2xl" src={image.portrait} alt={`${title} poster`}/>
             <div className="flex flex-col items-center gap-4 flex-grow">
                 <div className="flex items-start gap-2 self-stretch">
