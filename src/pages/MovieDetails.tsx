@@ -135,28 +135,23 @@ export const MovieDetails = () => {
         </div>
     )
 }
-const header = (
-    <div className="flex flex-col items-center gap-2 w-full h-full bg-gradient-to-t from-black to-transparent">
-        <NavBar/>
-        <div className="flex px-4 flex-col items-start gap-2 flex-grow self-stretch">
-            <div className="flex p-4 flex-col justify-end items-center gap-2 self-stretch">
-                <img src={image.header} alt="header"className="w-full" />
-                <Rating rating={rating} />
-                <Button text="Book Now"/>
-            </div>
-        </div>
-    </div>
-)
+
 
 const phone = (
     <div className="w-full h-full"  >
         <div style={{ backgroundImage: `url(${image.portrait}})`, backgroundSize: "cover" }} className={`flex md:hidden flex-col items-start gap-2 self-stretch`}>
-                {header}
+                <div className="flex flex-col items-center gap-2 w-full h-full bg-gradient-to-t from-black to-transparent">
+                    <NavBar/>
+                    <div className="flex px-4 flex-col items-start gap-2 flex-grow self-stretch">
+                        <div className="flex p-4 flex-col justify-end items-center gap-2 self-stretch">
+                            <img src={image.header} alt="header"className="w-full" />
+                            <Rating rating={rating} />
+                            <Button text="Book Now"/>
+                        </div>
+                    </div>
+                </div>
             </div>
             {/* header for md */}
-        <div style={{ backgroundImage: `url(${image.landscape}})`, backgroundSize: "cover" }} className={`hidden md:flex flex-col items-start gap-2 self-stretch`}>
-                {header}
-        </div>
         <div className="flex px-4 flex-col items-start gap-2 flex-grow self-stretch bg-black">
             <MovieAspects heading={title} text={description}/>
             <div className="flex justify-between items-start self-stretch">
