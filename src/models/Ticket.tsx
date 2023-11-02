@@ -6,5 +6,4 @@ export type Ticket = {
     image: string,
     qrCode: string,
     schedule: string,
-    orientation?: "horizontal" | "vertical"
 }
