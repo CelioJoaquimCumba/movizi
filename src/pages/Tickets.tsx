@@ -1,3 +1,4 @@
+import { Footer } from "../components/molecules/Footer";
 import { NavBar } from "../components/molecules/NavBar"
 import { Tickets as MovieTicket } from "../components/organisms/Tickets"
 import { Ticket } from "../models/Ticket";
@@ -30,10 +31,11 @@ export const Tickets = () => {
     return(
         <div className="flex flex-col items-start gap-2 w-full h-full min-h-screen bg-black">
             <NavBar/>
-            <div className="flex flex-col items-start gap-2 flex-grow self-stretch">
+            <div className="flex flex-col items-start gap-2 flex-grow self-stretch md:py-16 md:px-24">
                 <MovieTicket heading={"Purchased Tickets"} tickets={movieTickets}/>
                 <MovieTicket heading={"History"} tickets={movieTickets}/>
             </div>
+            <Footer/>
         </div>
     )
 }
