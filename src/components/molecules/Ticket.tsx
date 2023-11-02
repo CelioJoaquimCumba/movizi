@@ -13,7 +13,7 @@ export const Ticket = ({date, room, seats, movie, image, qrCode, orientation = "
                     </svg>
                     <span className="text-xl leading-7 font-semibold text-white text-center">Ticket</span>
                 </div>
-                <img src={image} className={` ${orientation === "horizontal" ? "w-64 " : "w-full"} object-cover rounded`} />
+                <img src={image} className={` ${orientation === "horizontal" ? "w-64 aspect-square" : "w-full"} object-cover rounded`} />
             </div>
             <div className={`flex py-4 px-2 ${orientation === "vertical" ? "flex-col" : "flex-row"} items-center gap-2 self-stretch ${orientation === "vertical" ? "rounded-b-2xl" : "rounded-e-2xl"} bg-slate-900`}>
                 <div className="flex flex-col items-center w-full gap-2 flex-grow">
