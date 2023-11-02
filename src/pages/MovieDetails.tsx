@@ -46,13 +46,13 @@ const {cast,title, image, genre, duration, language, description, rating, commen
             text: "This is the first comment",
             timeStamp: "2023-10-31 12:00 PM",
             username: "User1",
-            profileImage: "user1.jpg",
+            profileImage: "https://randomuser.me/api/portraits/women/67.jpg",
             comments: [
                 {
                     text: "Reply to the first comment",
                     timeStamp: "2023-10-31 12:05 PM",
                     username: "User2",
-                    profileImage: "user2.jpg",
+                    profileImage: "https://randomuser.me/api/portraits/men/98.jpg",
                     comments: [] // Empty array for replies
                 }
             ]
@@ -61,7 +61,7 @@ const {cast,title, image, genre, duration, language, description, rating, commen
             text: "Another comment",
             timeStamp: "2023-10-31 12:15 PM",
             username: "User3",
-            profileImage: "user3.jpg",
+            profileImage: "https://randomuser.me/api/portraits/men/69.jpg",
             comments: [] // Empty array for comments
         }
         // You can add more comments here
