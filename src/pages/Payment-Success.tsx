@@ -189,7 +189,7 @@ const laptop = (
             <div className="flex py-16 px-24 flex-grow w-full">
                 <div className="flex  py-8 px-14 flex-col justify-center items-start gap-8 self-stretch rounded-2xl bg-black bg-opacity-75 w-full">
                     <div className="flex flex-col items-center gap-4 self-stretch">
-                        <div className="flex py-4 px-2 flex-col justify-end items-end gap-2 self-stretch rounded-lg">
+                        <div className="flex py-4 px-2 flex-col justify-end items-start gap-2 self-stretch rounded-lg">
                             <MovieAspects heading={"Your booking of  '"+title+"'"+ " was successfull"} text={"The ticket will be sent to your email and will also be stored in-app"}/>
                             <Ticket orientation="horizontal" date={"01/11/2023"} room={0} seats={["A4","B4"]} movie={title} image={image.portrait} qrCode={title} schedule={"12h - 13 30m"}/>
                             <div className="flex justify-end gap-4 items-start self-stretch w-full">
