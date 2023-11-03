@@ -9,8 +9,10 @@ import { MovieReview } from "../components/organisms/MovieReview";
 import { Movie } from "../models/Movie";
 import { MovieDetails as MovieHeader } from '../components/organisms/MovieDetails'
 import { Cast } from "../components/organisms/Cast";
+import { Link } from "react-router-dom";
 
-const {cast,title, image, genre, duration, language, description, rating, comments, directors, caption}: Movie = {
+const {id, cast,title, image, genre, duration, language, description, rating, comments, directors, caption}: Movie = {
+    id:"fdasg213d",
     title: "Spider-Man: No Way Home",
     genre: "Action, Adventure",
     duration: "2h 28m",
@@ -146,7 +148,9 @@ const phone = (
                         <div className="flex p-4 flex-col justify-end items-center gap-2 self-stretch">
                             <img src={image.header} alt="header"className="w-full" />
                             <Rating rating={rating} />
-                            <Button text="Book Now"/>
+                            <Link to={`/booking/${id}`}>
+                                <Button text="Book Now"/>
+                            </Link>
                         </div>
                     </div>
                 </div>

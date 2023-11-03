@@ -9,7 +9,7 @@ type CardMovie = {
 export const CardMovie = ({id, image, title, genre, duration, language, ranking, orientation = "vertical", type = "default"}: CardMovie) => {
     const navigate = useNavigate()
     const handleClick = () => {
-        navigate(`movie/${id}`)
+        navigate(`/movie/${id}`)
     }
     return(
         <div onClick={handleClick} style={{ backgroundImage: `url(${type === "default" || orientation === "vertical" ? image.portrait: image.landscape}})`, backgroundSize: "cover" }} className={` ${type === "default" || orientation === "vertical" ? "aspect-[3/4]" : "aspect-[4/2]"} rounded-lg h-72 ${type === "rank" && "h-full"} flex flex-col justify-end hover:cursor-pointer w-full`}>
