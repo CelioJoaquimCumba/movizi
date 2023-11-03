@@ -1,6 +1,7 @@
 import { Comment } from "./Comment"
 
 export type Movie = {
+    id: string,
     title: string,
     genre: string,
     duration: string,
