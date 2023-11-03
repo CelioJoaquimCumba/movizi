@@ -31,7 +31,7 @@ export const router = createBrowserRouter([
                 element: <MovieDetails/>
             },
             {
-                path:"booking",
+                path:"booking/:id",
                 element: <Booking/>
             },
             {
@@ -39,11 +39,11 @@ export const router = createBrowserRouter([
                 element: <Payment/>
             },
             {
-                path: "PaymentSuccess",
+                path: "payment-success",
                 element: <PaymentSuccess/>
             },
             {
-                path: "PaymentFailure",
+                path: "payment-failure",
                 element: <PaymentFailure/>
             },
             {
