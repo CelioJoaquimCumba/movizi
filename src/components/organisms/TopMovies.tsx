@@ -23,7 +23,7 @@ export const TopMovies = ({movies}:TopMovies) => {
             <div className="flex flex-col items-start gap-2 self-stretch md:hidden">
                 {movies.map((movie) => {
                     return(
-                        <MovieChartItem key={movie.title} ranking={movie.ranking ? movie.ranking : 0} title={movie.title} image={movie.image.portrait} bookings={movie.bookings ? movie.bookings : 0}/>
+                        <MovieChartItem key={movie.title} id={movie.id} ranking={movie.ranking ? movie.ranking : 0} title={movie.title} image={movie.image.portrait} bookings={movie.bookings ? movie.bookings : 0}/>
                     )
                 })}
 
