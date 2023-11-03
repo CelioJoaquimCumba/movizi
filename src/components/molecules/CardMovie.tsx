@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom"
 import { Movie } from "../../models/Movie"
 import { Button } from "../atoms/Button"
 
@@ -5,9 +6,13 @@ type CardMovie = {
     type?: "default" | "rank",
     orientation? : "vertical" | "horizontal"
 } & Movie
-export const CardMovie = ({image, title, genre, duration, language, ranking, orientation = "vertical", type = "default"}: CardMovie) => {
+export const CardMovie = ({id, image, title, genre, duration, language, ranking, orientation = "vertical", type = "default"}: CardMovie) => {
+    const navigate = useNavigate()
+    const handleClick = () => {
+        navigate(`movie/${id}`)
+    }
     return(
-        <div style={{ backgroundImage: `url(${type === "default" || orientation === "vertical" ? image.portrait: image.landscape}})`, backgroundSize: "cover" }} className={` ${type === "default" || orientation === "vertical" ? "aspect-[3/4]" : "aspect-[4/2]"} rounded-lg h-72 ${type === "rank" && "h-full"} flex flex-col justify-end hover:cursor-pointer w-full`}>
+        <div onClick={handleClick} style={{ backgroundImage: `url(${type === "default" || orientation === "vertical" ? image.portrait: image.landscape}})`, backgroundSize: "cover" }} className={` ${type === "default" || orientation === "vertical" ? "aspect-[3/4]" : "aspect-[4/2]"} rounded-lg h-72 ${type === "rank" && "h-full"} flex flex-col justify-end hover:cursor-pointer w-full`}>
                 { type === "default" ?
                     <div className={`flex h-full rounded-lg  p-1 flex-col justify-end items-center gap-2 flex-shrink-0  bg-gradient-to-t from-black hover:from-transparent to-transparent`}>
                         <div className="flex flex-col justify-end items-center gap-2 self-stretch">
