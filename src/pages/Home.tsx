@@ -1,3 +1,4 @@
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "../components/atoms/Button"
 import { Footer } from "../components/molecules/Footer";
 import { NavBar } from "../components/molecules/NavBar"
@@ -5,7 +6,8 @@ import { MovieList } from "../components/organisms/MovieList";
 import { TopMovies } from "../components/organisms/TopMovies"
 import { Movie } from "../models/Movie";
 
-const {image, genre, duration, language, description}: Movie = {
+const {id, image, genre, duration, language, description}: Movie = {
+    id:"fdasdfadsa",
     title: "Spider-Man: No Way Home",
     genre: "Action, Adventure",
     duration: "2h 28m",
@@ -22,6 +24,7 @@ const {image, genre, duration, language, description}: Movie = {
 }
 const movies: Movie[] = [
     {
+        id:"1",
         title: "Spider-Man: No Way Home",
         genre: "Action, Adventure",
         duration: "2h 28m",
@@ -36,6 +39,7 @@ const movies: Movie[] = [
         directors: "Celio Cumba"
     },
     {
+        id:"2",
         title: "Inception",
         genre: "Science Fiction, Action",
         duration: "2h 28m",
@@ -47,6 +51,7 @@ const movies: Movie[] = [
         }
     },
     {
+        id: "3",
         title: "Batman: The Dark Knight",
         genre: "Action, Crime, Drama",
         duration: "2h 32m",
@@ -58,6 +63,7 @@ const movies: Movie[] = [
         }
     },
     {
+        id:"4",
         title: "Pulp Fiction",
         genre: "Crime, Drama",
         duration: "2h 34m",
@@ -69,6 +75,7 @@ const movies: Movie[] = [
         }
     },
     {
+        id:"5",
         title: "The Shawshank Redemption",
         genre: "Drama",
         duration: "2h 22m",
@@ -81,6 +88,7 @@ const movies: Movie[] = [
     }
 ];
 export const Home = () => {
+    const navigate = useNavigate()
     return(
         <div className="flex flex-col items-center gap-2 bg-black w-full h-full ">
             {/* header for phone */}
@@ -91,10 +99,12 @@ export const Home = () => {
             <div style={{ backgroundImage: `url(${image.landscape}})`, backgroundSize: "cover" }} className={`hidden md:flex flex-col items-start gap-2 self-stretch`}>
                 {header}
             </div>
-            <div className="flex flex-col px-4 gap-2 self-stretch">
-                <TopMovies movies={movies}/>
-                <MovieList heading={"Now Showing"} movies={movies}/>
-                <MovieList heading={"Coming Soon"} movies={movies}/>
+            <div className="flex flex-col px-4 gap-2 self-stretch items-center ">
+                <div className="flex flex-col w-full h-full max-w-7xl">
+                    <TopMovies movies={movies}/>
+                    <MovieList heading={"Now Showing"} movies={movies}/>
+                    <MovieList heading={"Coming Soon"} movies={movies}/>
+                </div>
                 <Footer/>
             </div>
         </div>
@@ -107,19 +117,21 @@ const header = (
                         <div className="flex  flex-col justify-end items-center gap-2 self-stretch h-full md:w-1/2">
                             <img src={image.header} alt="header" className="w-1/2" />
                             <span className="text-sm leading-5 font-normal text-white">{genre}|{duration}|{language}</span>
-                            <div className="md:hidden">
+                            <Link to={`booking/${id}`} className="md:hidden">
                                 <Button text={"Book Now"}/>
-                            </div>
+                            </Link>
                             <span className="hidden md:block text-sm leading-5 font-normal text-white">{description}</span>
                             <div className="flex justify-center items-center gap-2 self-stretch">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="17" height="16" viewBox="0 0 17 16" fill="none">
                                     <path d="M9.16667 10.6667H8.5V8H7.83333M8.5 5.33333H8.50667M14.5 8C14.5 8.78793 14.3448 9.56815 14.0433 10.2961C13.7417 11.0241 13.2998 11.6855 12.7426 12.2426C12.1855 12.7998 11.5241 13.2417 10.7961 13.5433C10.0681 13.8448 9.28793 14 8.5 14C7.71207 14 6.93185 13.8448 6.2039 13.5433C5.47595 13.2417 4.81451 12.7998 4.25736 12.2426C3.70021 11.6855 3.25825 11.0241 2.95672 10.2961C2.65519 9.56815 2.5 8.78793 2.5 8C2.5 6.4087 3.13214 4.88258 4.25736 3.75736C5.38258 2.63214 6.9087 2 8.5 2C10.0913 2 11.6174 2.63214 12.7426 3.75736C13.8679 4.88258 14.5 6.4087 14.5 8Z" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                                 </svg>
-                                <span className="text-sm leading-5 font-normal text-white">More info</span>
+                                <Link to={`movie/${id}`} className="text-sm leading-5 font-normal text-white">More info</Link>
                             </div>
                         </div>
                         <div className="hidden  md:flex p-4 flex-col w-1/2 justify-end items-start gap-2 self-stretch">
-                            <Button text={"Book Now"}/>
+                            <Link to={`booking/${id}`}>
+                                <Button text={"Book Now"}/>
+                            </Link>
                         </div>
                     </div>
                 </div>
