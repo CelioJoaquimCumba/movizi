@@ -10,7 +10,8 @@ import { Seatings } from "../components/organisms/Seating";
 import { BookingSummary } from "../components/organisms/BookingSummary";
 import { MovieAspects } from "../components/atoms/MovieAspects";
 
-const {cast,title, image, genre, duration, language, description, rating, comments, directors, caption}: Movie = {
+const {id, cast,title, image, genre, duration, language, description, rating, comments, directors, caption}: Movie = {
+    id: "id123",
     title: "Spider-Man: No Way Home",
     genre: "Action, Adventure",
     duration: "2h 28m",
@@ -82,7 +83,6 @@ const {startDate, endDate, schedules,soldSeats, items} = {
             schedules : [{startTime: "12h 30m", endTime:"14h"},{ startTime:"15h 15m", endTime:"16h"},{startTime:"17h 30m", endTime:"19h"},{startTime:"20h 30m", endTime:"21h"}],
             soldSeats:["A1","A2"],
             items: [{item:"ticket seat B4",price:100, quantity:1},{item:"Ticket seat B5",price:100, quantity:1},{item:"Ticket seat B6",price:100, quantity:1}]
-            
         }
 export const Booking = () => {
     return(
@@ -114,7 +114,6 @@ const phone = (
             <div className="flex w-full justify-end">
                 <Button text={"Checkout"}/>
             </div>
-            
             <Footer/>
         </div>
     </div>
@@ -127,7 +126,7 @@ const laptop = (
             <div className="flex py-16 px-24 flex-grow w-full">
                 <div className="flex  py-8 px-14 flex-col justify-center items-center gap-8 self-stretch rounded-2xl bg-black bg-opacity-75 w-full">
                     <FormProgress index={1}/>
-                    <MovieHeader title={title} genre={genre} duration={duration} language={language} image={image} cast={cast} comments={comments} directors={directors} description={description} rating={rating} caption={caption}/>
+                    <MovieHeader id={id} title={title} genre={genre} duration={duration} language={language} image={image} cast={cast} comments={comments} directors={directors} description={description} rating={rating} caption={caption}/>
                     <div className="flex flex-col items-center gap-4 self-stretch">
                         <div className="flex py-4 px-2 flex-col justify-end items-end gap-2 self-stretch rounded-lg">
                             {/* <div className="flex justify-center items-start gap-2 self-stretch"> */}
