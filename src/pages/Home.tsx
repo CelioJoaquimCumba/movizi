@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Button } from "../components/atoms/Button"
 import { Footer } from "../components/molecules/Footer";
 import { NavBar } from "../components/molecules/NavBar"
@@ -88,7 +88,6 @@ const movies: Movie[] = [
     }
 ];
 export const Home = () => {
-    const navigate = useNavigate()
     return(
         <div className="flex flex-col items-center gap-2 bg-black w-full h-full ">
             {/* header for phone */}
