@@ -57,7 +57,6 @@ export const DatePicker = ({startDate,endDate, updateDate}:DatePicker) => {
     } else {
         endAt = 32
     }
-    console.log(startDate,startAt,endDate,endAt,month)
 
     const handleDateRange = (isForward: boolean) => {
         let newMonth = month

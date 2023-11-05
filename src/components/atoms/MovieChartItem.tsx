@@ -12,7 +12,6 @@ export const MovieChartItem = ({ranking, bookings, title, id, image}: MovieChart
     const navigate = useNavigate()
     const handleClick = () => {
         navigate(`/movie/${id}`)
-        console.log("here")
     }
     return(
         <div className="flex p-2 justify-center items-center gap-2 rounded-lg bg-slate-900 hover:bg-slate-800 w-full" onClick={handleClick}>
