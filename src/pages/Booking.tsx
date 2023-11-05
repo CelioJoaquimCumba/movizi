@@ -13,6 +13,7 @@ import { useNavigate } from "react-router-dom";
 import { addTicket } from "../firebase/firestore";
 import { useState } from "react";
 import { ScheduleTime } from "../components/atoms/ScheduleTime";
+import { Payments } from "../components/organisms/Payments";
 
 const {id, cast,title, image, genre, duration, language, description, rating, comments, directors, caption}: Movie = {
     id: "id123",
@@ -103,7 +104,6 @@ const {startDate, endDate, schedules,soldSeats, items} = {
                     setSelectedSeats([...selectedSeats, seat])
                 }
             }
-            console.log(selectedSeats)
             const  navigate = useNavigate()
             const makePayment = async() => {
                 if(Math.floor(Math.random()*2) === 0 ){
@@ -113,7 +113,7 @@ const {startDate, endDate, schedules,soldSeats, items} = {
                             id: "id123",
                             date: selectedDate,
                             room: 4,
-                            seats: ["A4","B5"],
+                            seats: selectedSeats,
                             movie: title,
                             image: image.portrait,
                             qrCode: "123",
@@ -145,8 +145,9 @@ const {startDate, endDate, schedules,soldSeats, items} = {
                 <Schedule updateSchedule={handleSchedule} schedules={schedules}/>
                 <Seatings updateSeats={handleSeats} soldSeats={soldSeats}/>
                 <BookingSummary items={items}/>
+                <Payments/>
                 <div className="flex w-full justify-end">
-                    <Button text={"Checkout"} onClick={makePayment}/>
+                    <Button text={"Pay"} onClick={makePayment}/>
                 </div>
                 <Footer/>
             </div>
@@ -169,8 +170,9 @@ const {startDate, endDate, schedules,soldSeats, items} = {
                                 {/* </div> */}
                                 <Seatings updateSeats={handleSeats} soldSeats={soldSeats}/>
                                 <BookingSummary items={items}/>
+                                <Payments/>
                                 <div className="flex w-full justify-end">
-                                    <Button text="Checkout" onClick={makePayment}/>
+                                    <Button text="Pay" onClick={makePayment}/>
                                 </div>
                             </div>
                         </div>
