@@ -9,6 +9,10 @@ import { Schedule } from "../components/organisms/Schedule";
 import { Seatings } from "../components/organisms/Seating";
 import { BookingSummary } from "../components/organisms/BookingSummary";
 import { MovieAspects } from "../components/atoms/MovieAspects";
+import { useNavigate } from "react-router-dom";
+import { addTicket } from "../firebase/firestore";
+import { useState } from "react";
+import { ScheduleTime } from "../components/atoms/ScheduleTime";
 
 const {id, cast,title, image, genre, duration, language, description, rating, comments, directors, caption}: Movie = {
     id: "id123",
@@ -84,7 +88,101 @@ const {startDate, endDate, schedules,soldSeats, items} = {
             soldSeats:["A1","A2"],
             items: [{item:"ticket seat B4",price:100, quantity:1},{item:"Ticket seat B5",price:100, quantity:1},{item:"Ticket seat B6",price:100, quantity:1}]
         }
-export const Booking = () => {
+        export const Booking = () => {
+            const [selectedDate, setSelectedDate] = useState("")
+            const handleDate = (date:string) => setSelectedDate(date)
+
+            const [selectedSchedule, setSelectedSchedule] = useState("")
+            const handleSchedule = (schedule:string) => setSelectedSchedule(schedule)
+            
+            const [ selectedSeats, setSelectedSeats] = useState<Array<string>>([])
+            const handleSeats = (seat:string) => {
+                if(selectedSeats.find(s => s === seat)){
+                    setSelectedSeats(selectedSeats.filter(s => s !== seat))
+                }else{
+                    setSelectedSeats([...selectedSeats, seat])
+                }
+            }
+            console.log(selectedSeats)
+            const  navigate = useNavigate()
+            const makePayment = async() => {
+                if(Math.floor(Math.random()*2) === 0 ){
+                    try {
+                        //TODO
+                        await addTicket({
+                            id: "id123",
+                            date: selectedDate,
+                            room: 4,
+                            seats: ["A4","B5"],
+                            movie: title,
+                            image: image.portrait,
+                            qrCode: "123",
+                            schedule: selectedSchedule
+                        })
+                        navigate("/payment-success")
+                    } catch (error) {
+                        navigate("/payment-failure")
+                    }
+                }else{
+                    navigate("/payment-failure")
+                }
+            }
+    const phone = (
+        <div className="w-full h-full"  >
+            <div style={{ backgroundImage: `url(${image.portrait}})`, backgroundSize: "cover" }} className={`flex md:hidden flex-col items-start gap-2 self-stretch`}>
+                    <div className="flex flex-col items-center gap-2 w-full h-full bg-gradient-to-t from-black to-transparent">
+                        <NavBar/>
+                        <div className="flex px-4 flex-col items-start gap-2 flex-grow self-stretch">
+                            <div className="flex p-4 flex-col justify-end items-center gap-2 self-stretch">
+                                <img src={image.header} alt="header"className="w-full" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <div className="flex px-4 flex-col items-start gap-2 flex-grow self-stretch bg-black">
+                <MovieAspects heading={"'"+title+"'"+ " Booking"} text={""}/>
+                <Date updateDate={handleDate} startDate={startDate} endDate={endDate}/>
+                <Schedule updateSchedule={handleSchedule} schedules={schedules}/>
+                <Seatings updateSeats={handleSeats} soldSeats={soldSeats}/>
+                <BookingSummary items={items}/>
+                <div className="flex w-full justify-end">
+                    <Button text={"Checkout"} onClick={makePayment}/>
+                </div>
+                <Footer/>
+            </div>
+        </div>
+    )
+    
+    const laptop = (
+        <div className="w-full h-full flex flex-col items-start  " style={{ backgroundImage: `url(${image.portrait}})`, backgroundSize: "cover" }}>
+            <div className="flex flex-col items-start gap-2 w-full h-full bg-gradient-to-t via-black from-black to-transparent">
+                <NavBar/>
+                <div className="flex py-16 px-24 flex-grow w-full">
+                    <div className="flex  py-8 px-14 flex-col justify-center items-center gap-8 self-stretch rounded-2xl bg-black bg-opacity-75 w-full">
+                        <FormProgress index={1}/>
+                        <MovieHeader id={id} title={title} genre={genre} duration={duration} language={language} image={image} cast={cast} comments={comments} directors={directors} description={description} rating={rating} caption={caption}/>
+                        <div className="flex flex-col items-center gap-4 self-stretch">
+                            <div className="flex py-4 px-2 flex-col justify-end items-end gap-2 self-stretch rounded-lg">
+                                {/* <div className="flex justify-center items-start gap-2 self-stretch"> */}
+                                    <Date  updateDate={handleDate} startDate={startDate} endDate={endDate}/>
+                                    <Schedule updateSchedule={handleSchedule} schedules={schedules}/>
+                                {/* </div> */}
+                                <Seatings updateSeats={handleSeats} soldSeats={soldSeats}/>
+                                <BookingSummary items={items}/>
+                                <div className="flex w-full justify-end">
+                                    <Button text="Checkout" onClick={makePayment}/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <Footer/>
+    
+    
+            </div>
+    
+        </div>
+    )
     return(
         <div className="w-full h-full">
             <div className="w-full h-full md:hidden">{phone}</div>
@@ -92,60 +190,3 @@ export const Booking = () => {
         </div>
     )
 }
-
-const phone = (
-    <div className="w-full h-full"  >
-        <div style={{ backgroundImage: `url(${image.portrait}})`, backgroundSize: "cover" }} className={`flex md:hidden flex-col items-start gap-2 self-stretch`}>
-                <div className="flex flex-col items-center gap-2 w-full h-full bg-gradient-to-t from-black to-transparent">
-                    <NavBar/>
-                    <div className="flex px-4 flex-col items-start gap-2 flex-grow self-stretch">
-                        <div className="flex p-4 flex-col justify-end items-center gap-2 self-stretch">
-                            <img src={image.header} alt="header"className="w-full" />
-                        </div>
-                    </div>
-                </div>
-            </div>
-        <div className="flex px-4 flex-col items-start gap-2 flex-grow self-stretch bg-black">
-            <MovieAspects heading={"'"+title+"'"+ " Booking"} text={""}/>
-            <Date startDate={startDate} endDate={endDate}/>
-            <Schedule schedules={schedules}/>
-            <Seatings soldSeats={soldSeats}/>
-            <BookingSummary items={items}/>
-            <div className="flex w-full justify-end">
-                <Button text={"Checkout"}/>
-            </div>
-            <Footer/>
-        </div>
-    </div>
-)
-
-const laptop = (
-    <div className="w-full h-full flex flex-col items-start  " style={{ backgroundImage: `url(${image.portrait}})`, backgroundSize: "cover" }}>
-        <div className="flex flex-col items-start gap-2 w-full h-full bg-gradient-to-t via-black from-black to-transparent">
-            <NavBar/>
-            <div className="flex py-16 px-24 flex-grow w-full">
-                <div className="flex  py-8 px-14 flex-col justify-center items-center gap-8 self-stretch rounded-2xl bg-black bg-opacity-75 w-full">
-                    <FormProgress index={1}/>
-                    <MovieHeader id={id} title={title} genre={genre} duration={duration} language={language} image={image} cast={cast} comments={comments} directors={directors} description={description} rating={rating} caption={caption}/>
-                    <div className="flex flex-col items-center gap-4 self-stretch">
-                        <div className="flex py-4 px-2 flex-col justify-end items-end gap-2 self-stretch rounded-lg">
-                            {/* <div className="flex justify-center items-start gap-2 self-stretch"> */}
-                                <Date startDate={startDate} endDate={endDate}/>
-                                <Schedule schedules={schedules}/>
-                            {/* </div> */}
-                            <Seatings soldSeats={soldSeats}/>
-                            <BookingSummary items={items}/>
-                            <div className="flex w-full justify-end">
-                                <Button text="Checkout"/>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <Footer/>
-
-
-        </div>
-
-    </div>
-)
