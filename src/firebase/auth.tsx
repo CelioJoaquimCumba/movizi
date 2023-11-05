@@ -6,11 +6,13 @@ import { auth } from "./firebase";
 const AuthUserContext = createContext({
     authUser: null,
     isLoading: true,
+    signOut: ()=>{},
 })
 export const useFirebaseAuth = () => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const [authUser, setAuthUser ] = useState<any>(null)
     const [isLoading, setIsLoading] = useState(true)
+    
     const clear = () => {
         setAuthUser(null)
         setIsLoading(false)
