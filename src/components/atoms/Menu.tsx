@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { NavItem } from "./NavItem"
+import { signOut } from "firebase/auth"
 
 export const Menu = () => {
     const [isOpen, setIsOpen] = useState(false)
@@ -14,7 +15,9 @@ export const Menu = () => {
             <div id="dropdown" className={`${isOpen ? "flex" : "hidden"} flex-col absolute top-14 right-0 z-10  bg-black bg-opacity-75 w-2/3 gap-2  divide-y-2 divide-black`}>
                 <NavItem text={"Home"} link={"/"}/>
                 <NavItem text={"Tickets"} link={"/tickets"}/>
-                <NavItem text={"Sign Up"} link={"/signup"}/>
+                <div onClick={()=>signOut}>
+                    <NavItem text={"Sign Up"} link={""}/>
+                </div>
             </div>
 
     </div>

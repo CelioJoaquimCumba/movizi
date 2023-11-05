@@ -9,7 +9,7 @@ export type NavBar = {
 }
 
 export const NavBar = ({signed = true}: NavBar) => {
-    const { authUser } = useAuth()
+    const { authUser, signOut } = useAuth()
     return(
         <div className="flex py-4 px-2 justify-between items-center bg-gradient-to-t from-black/50  to-black w-full">
             <div className="flex items-center gap-4">
@@ -27,7 +27,7 @@ export const NavBar = ({signed = true}: NavBar) => {
                 <div className="hidden md:flex h-full gap-2 items-center">
                     {/* <NavItem type="profile" text={"profile"}/> */}
                     <span className=" text-sm leading-5 font-normal text-white">{authUser?.email}</span>
-                    <Button text={"Sign out"}/>
+                    <Button text={"Sign out"} onClick={signOut}/>
                 </div>
                 :
                 <div className="hidden md:flex items-center gap-2">
