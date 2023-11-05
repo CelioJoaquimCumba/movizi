@@ -1,9 +1,10 @@
 import { Seat } from "../atoms/Seat"
 import { Seats } from "../molecules/Seats"
 type SeatsForm = {
-    soldSeats: string[]
+    soldSeats: string[],
+    updateSeats: (seats:string) => void
 }
-export const Seatings = ({soldSeats}:SeatsForm) => {
+export const Seatings = ({soldSeats, updateSeats}:SeatsForm) => {
     const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
     const parseSeatString = (seatString:string) => {
         const row = alphabet.indexOf(seatString[0].toUpperCase()) + 1;
@@ -27,9 +28,9 @@ export const Seatings = ({soldSeats}:SeatsForm) => {
                                 <span className="flex flex-col items-center gap-2 self-stretch text-white text-base leading-6 font-normal rounded-lg bg-slate-500">Screen</span>
                             </div>
                             <div className="flex items-start gap-4  ">
-                                <Seats row={6} column={2} start={1} sold={ soldSeatObjects && soldSeatObjects.filter(obj => obj.column >= 1 && obj.column <= 2 ).map(obj => { return {row: obj.row, column: obj.column - 0}})}/>
-                                <Seats row={6} column={8} start={3} sold={ soldSeatObjects && soldSeatObjects.filter(obj => obj.column >= 3 && obj.column <= 10 ).map(obj => { return {row: obj.row, column: obj.column - 2}})}/>
-                                <Seats row={6} column={2} start={11} sold={ soldSeatObjects && soldSeatObjects.filter(obj => obj.column >= 11 && obj.column <= 12 ).map(obj => { return {row: obj.row, column: obj.column - 10}})}/>
+                                <Seats updateSeats={updateSeats} row={6} column={2} start={1} sold={ soldSeatObjects && soldSeatObjects.filter(obj => obj.column >= 1 && obj.column <= 2 ).map(obj => { return {row: obj.row, column: obj.column - 0}})}/>
+                                <Seats updateSeats={updateSeats} row={6} column={8} start={3} sold={ soldSeatObjects && soldSeatObjects.filter(obj => obj.column >= 3 && obj.column <= 10 ).map(obj => { return {row: obj.row, column: obj.column - 2}})}/>
+                                <Seats updateSeats={updateSeats} row={6} column={2} start={11} sold={ soldSeatObjects && soldSeatObjects.filter(obj => obj.column >= 11 && obj.column <= 12 ).map(obj => { return {row: obj.row, column: obj.column - 10}})}/>
                             </div>
                         </div>
                     </div>
@@ -39,15 +40,15 @@ export const Seatings = ({soldSeats}:SeatsForm) => {
             <div className="flex py-1 px-2 justify-start items-center gap-2 rounded border-2 border-slate-700 flex-wrap ">
                 <span className="text-sm leading-5 font-normal text-white">Seats:</span>
                 <div className="flex items-center gap-2">
-                    <Seat seat="" status="available"/>
+                    <Seat updateSeats={()=> {}} seat="" status="available"/>
                     <span className="text-sm leading-5 font-normal text-white">Available</span>
                 </div>
                 <div className="flex items-center gap-2">
-                    <Seat seat="" status="occupied"/>
+                    <Seat updateSeats={()=> {}} seat="" status="occupied"/>
                     <span className="text-sm leading-5 font-normal text-white">Occupied</span>
                 </div>
                 <div className="flex items-center gap-2">
-                    <Seat seat="" status="selected"/>
+                    <Seat updateSeats={()=> {}} seat="" status="selected"/>
                     <span className="text-sm leading-5 font-normal text-white">Selected</span>
                 </div>
 

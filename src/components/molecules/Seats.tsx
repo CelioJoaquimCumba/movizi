@@ -4,18 +4,20 @@ type Seats = {
     row: number,
     column: number,
     start: number,
-    sold: Array<{row: number, column: number}>
+    sold: Array<{row: number, column: number}>,
+    updateSeats: (seats:string) => void
 }
 
-export const Seats = ({row, column, start, sold}: Seats) => {
-    const matrix: Array<Array<number>> = []
+export const Seats = ({row, column, start, sold, updateSeats}: Seats) => {
+    const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    const matrix: Array<Array<string>> = []
     for (let i = 0 ; i < row ; i ++ ) {
         const array = []
         for (let j = 0 ; j < column ; j ++ ) {
             if ( sold && sold.some(obj => obj.column -1 === j && obj.row-1 === i)) {
-                array.push(0)
+                array.push("0")
             } else {
-                array.push(j+start)
+                array.push(alphabet[i]+(j+start))
             }
         }
         matrix.push(array)
@@ -29,7 +31,7 @@ export const Seats = ({row, column, start, sold}: Seats) => {
                         <div key={index} className="flex flex-start gap-1">
                             {array.map(
                                 (seat)=> 
-                                <Seat key={seat} seat={seat.toString()} status={ seat === 0 ? "occupied" : "available"} />
+                                <Seat updateSeats={updateSeats} key={seat} seat={seat.toString()} status={ seat === "0" ? "occupied" : "available"} />
                             )}
                         </div>
                     )
