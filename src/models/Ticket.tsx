@@ -1,4 +1,5 @@
-export type Ticket = {
+export type Ticket = { 
+    uid:string,
     id: string,
     date: string,
     room: number,
@@ -7,4 +8,5 @@ export type Ticket = {
     image: string,
     qrCode: string,
     schedule: string,
+    expired?: boolean
 }
