@@ -74,7 +74,7 @@ const {id, cast,title, image, genre, duration, language, description, rating, co
     ],
 
 }
-const {startDate, endDate, schedules,soldSeats, items} = {
+const {startDate, endDate, schedules,soldSeats} = {
             startDate:{
                 day: 1,
                 month: 9,
@@ -87,7 +87,6 @@ const {startDate, endDate, schedules,soldSeats, items} = {
             },
             schedules : [{startTime: "12h 30m", endTime:"14h"},{ startTime:"15h 15m", endTime:"16h"},{startTime:"17h 30m", endTime:"19h"},{startTime:"20h 30m", endTime:"21h"}],
             soldSeats:["A1","A2"],
-            items: [{item:"ticket seat B4",price:100, quantity:1},{item:"Ticket seat B5",price:100, quantity:1},{item:"Ticket seat B6",price:100, quantity:1}]
         }
         export const Booking = () => {
             const [selectedDate, setSelectedDate] = useState("")
@@ -95,7 +94,6 @@ const {startDate, endDate, schedules,soldSeats, items} = {
 
             const [selectedSchedule, setSelectedSchedule] = useState("")
             const handleSchedule = (schedule:string) => setSelectedSchedule(schedule)
-            
             const [ selectedSeats, setSelectedSeats] = useState<Array<string>>([])
             const handleSeats = (seat:string) => {
                 if(selectedSeats.find(s => s === seat)){
@@ -127,6 +125,9 @@ const {startDate, endDate, schedules,soldSeats, items} = {
                     navigate("/payment-failure")
                 }
             }
+            const items = selectedSeats.map(seat => ({
+                item:"Ticket seat: "+seat,price:10, quantity:1
+            }))
     const phone = (
         <div className="w-full h-full"  >
             <div style={{ backgroundImage: `url(${image.portrait}})`, backgroundSize: "cover" }} className={`flex md:hidden flex-col items-start gap-2 self-stretch`}>
@@ -153,7 +154,6 @@ const {startDate, endDate, schedules,soldSeats, items} = {
             </div>
         </div>
     )
-    
     const laptop = (
         <div className="w-full h-full flex flex-col items-start  " style={{ backgroundImage: `url(${image.portrait}})`, backgroundSize: "cover" }}>
             <div className="flex flex-col items-start gap-2 w-full h-full bg-gradient-to-t via-black from-black to-transparent">
