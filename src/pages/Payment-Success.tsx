@@ -10,6 +10,7 @@ import { useAuth } from "../firebase/auth";
 import { useNavigate } from "react-router-dom";
 
 const {title, image}: Movie = {
+    id: "1",
     title: "Spider-Man: No Way Home",
     genre: "Action, Adventure",
     duration: "2h 28m",
@@ -42,12 +43,14 @@ const {title, image}: Movie = {
     ],
     comments: [
         {
+            id:"32",
             text: "This is the first comment",
             timeStamp: "2023-10-31 12:00 PM",
             username: "User1",
             profileImage: "user1.jpg",
             comments: [
                 {
+                    id:"1",
                     text: "Reply to the first comment",
                     timeStamp: "2023-10-31 12:05 PM",
                     username: "User2",
@@ -56,19 +59,13 @@ const {title, image}: Movie = {
                 }
             ]
         },
-        {
-            text: "Another comment",
-            timeStamp: "2023-10-31 12:15 PM",
-            username: "User3",
-            profileImage: "user3.jpg",
-            comments: [] // Empty array for comments
-        }
         // You can add more comments here
     ],
 
 }
 const movies: Movie[] = [
     {
+        id:"fads",
         title: "Spider-Man: No Way Home",
         genre: "Action, Adventure",
         duration: "2h 28m",
@@ -80,9 +77,56 @@ const movies: Movie[] = [
             landscape: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdn-8V3HcPD9Gul0Otnmuk0SZOeGgZSzemyg&usqp=CAU"
         },
         description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae similique fugit hic ex doloribus animi dolorum. Porro eligendi inventore autem, possimus culpa eius quo alias excepturi mollitia at, suscipit voluptas. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quisquam impedit tenetur saepe, odio, quae omnis eligendi mollitia consectetur atque nulla, in nesciunt nam. Non omnis assumenda mollitia iure quidem nemo.",
-        directors: "Celio Cumba"
+        directors: "Celio Cumba",
+        cast: [
+        {
+            image: "https://randomuser.me/api/portraits/men/96.jpg",
+            name: "John Smith",
+            role: "Celio Cumba"
+        },
+        {
+            image: "https://randomuser.me/api/portraits/men/79.jpg",
+            name: "Jane Doe",
+            role: "The chosen one"
+        },
+        {
+            image: "https://randomuser.me/api/portraits/women/42.jpg",
+            name: "Bob Johnson",
+            role: "Supporting Actor"
+        },
+    ],
+    comments: [
+        {
+            id:"4",
+            text: "This is the first comment",
+            timeStamp: "2023-10-31 12:00 PM",
+            username: "User1",
+            profileImage: "user1.jpg",
+            comments: [
+                {
+
+                    id:"1",
+                    text: "Reply to the first comment",
+                    timeStamp: "2023-10-31 12:05 PM",
+                    username: "User2",
+                    profileImage: "user2.jpg",
+                    comments: [] // Empty array for replies
+                }
+            ]
+        },
+        {
+            id:"2",
+            text: "Another comment",
+            timeStamp: "2023-10-31 12:15 PM",
+            username: "User3",
+            profileImage: "user3.jpg",
+            comments: [] // Empty array for comments
+        }
+        // You can add more comments here
+    ]
     },
     {
+        id:"fdas",
         title: "Inception",
         genre: "Science Fiction, Action",
         duration: "2h 28m",
@@ -91,9 +135,58 @@ const movies: Movie[] = [
         image: {
             portrait: "https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_.jpg",
             landscape: "https://frontmediaspot.com/wp-content/uploads/2023/07/Inception-3.jpg"
+        },
+        description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae similique fugit hic ex doloribus animi dolorum. Porro eligendi inventore autem, possimus culpa eius quo alias excepturi mollitia at, suscipit voluptas. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quisquam impedit tenetur saepe, odio, quae omnis eligendi mollitia consectetur atque nulla, in nesciunt nam. Non omnis assumenda mollitia iure quidem nemo.",
+        directors: "Celio Cumba",
+        cast: [
+        {
+            image: "https://randomuser.me/api/portraits/men/96.jpg",
+            name: "John Smith",
+            role: "Celio Cumba"
+        },
+        {
+            image: "https://randomuser.me/api/portraits/men/79.jpg",
+            name: "Jane Doe",
+            role: "The chosen one"
+        },
+        {
+            image: "https://randomuser.me/api/portraits/women/42.jpg",
+            name: "Bob Johnson",
+            role: "Supporting Actor"
+        },
+    ],
+    comments: [
+        {
+            id:"4",
+            text: "This is the first comment",
+            timeStamp: "2023-10-31 12:00 PM",
+            username: "User1",
+            profileImage: "user1.jpg",
+            comments: [
+                {
+
+                    id:"1",
+                    text: "Reply to the first comment",
+                    timeStamp: "2023-10-31 12:05 PM",
+                    username: "User2",
+                    profileImage: "user2.jpg",
+                    comments: [] // Empty array for replies
+                }
+            ]
+        },
+        {
+            id:"2",
+            text: "Another comment",
+            timeStamp: "2023-10-31 12:15 PM",
+            username: "User3",
+            profileImage: "user3.jpg",
+            comments: [] // Empty array for comments
         }
+        // You can add more comments here
+    ]
     },
     {
+        id:"fdas",
         title: "Batman: The Dark Knight",
         genre: "Action, Crime, Drama",
         duration: "2h 32m",
@@ -102,9 +195,59 @@ const movies: Movie[] = [
         image: {
             portrait: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQrRqDGEcfU3bXhqsGxvmL9KF-hgzeyZ-KqgA&usqp=CAU",
             landscape: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-_Xn7je5rFvtaAWdc0GLh3nXwwVcuavdCQA&usqp=CAU"
+        },
+        description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae similique fugit hic ex doloribus animi dolorum. Porro eligendi inventore autem, possimus culpa eius quo alias excepturi mollitia at, suscipit voluptas. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quisquam impedit tenetur saepe, odio, quae omnis eligendi mollitia consectetur atque nulla, in nesciunt nam. Non omnis assumenda mollitia iure quidem nemo.",
+        directors: "Celio Cumba",
+        cast: [
+        {
+            image: "https://randomuser.me/api/portraits/men/96.jpg",
+            name: "John Smith",
+            role: "Celio Cumba"
+        },
+        {
+            image: "https://randomuser.me/api/portraits/men/79.jpg",
+            name: "Jane Doe",
+            role: "The chosen one"
+        },
+        {
+            image: "https://randomuser.me/api/portraits/women/42.jpg",
+            name: "Bob Johnson",
+            role: "Supporting Actor"
+        },
+    ],
+    comments: [
+        {
+            id:"4",
+            text: "This is the first comment",
+            timeStamp: "2023-10-31 12:00 PM",
+            username: "User1",
+            profileImage: "user1.jpg",
+            comments: [
+                {
+
+                    id:"1",
+                    text: "Reply to the first comment",
+                    timeStamp: "2023-10-31 12:05 PM",
+                    username: "User2",
+                    profileImage: "user2.jpg",
+                    comments: [] // Empty array for replies
+                }
+            ]
+        },
+        {
+            id:"2",
+            text: "Another comment",
+            timeStamp: "2023-10-31 12:15 PM",
+            username: "User3",
+            profileImage: "user3.jpg",
+            comments: [] // Empty array for comments
         }
+        // You can add more comments here
+    ]
+        
     },
     {
+        id:"FDAS",
         title: "Pulp Fiction",
         genre: "Crime, Drama",
         duration: "2h 34m",
@@ -113,9 +256,58 @@ const movies: Movie[] = [
         image: {
             portrait: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSa4QvYfXtwKBQjRQNmO_tC5tsIthuJlPwrcQ&usqp=CAU",
             landscape: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3sk5giX0bysKdAyQr9p4x49yRXpDtTby0iA&usqp=CAU"
+        },
+        description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae similique fugit hic ex doloribus animi dolorum. Porro eligendi inventore autem, possimus culpa eius quo alias excepturi mollitia at, suscipit voluptas. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quisquam impedit tenetur saepe, odio, quae omnis eligendi mollitia consectetur atque nulla, in nesciunt nam. Non omnis assumenda mollitia iure quidem nemo.",
+        directors: "Celio Cumba",
+        cast: [
+        {
+            image: "https://randomuser.me/api/portraits/men/96.jpg",
+            name: "John Smith",
+            role: "Celio Cumba"
+        },
+        {
+            image: "https://randomuser.me/api/portraits/men/79.jpg",
+            name: "Jane Doe",
+            role: "The chosen one"
+        },
+        {
+            image: "https://randomuser.me/api/portraits/women/42.jpg",
+            name: "Bob Johnson",
+            role: "Supporting Actor"
+        },
+    ],
+    comments: [
+        {
+            id:"4",
+            text: "This is the first comment",
+            timeStamp: "2023-10-31 12:00 PM",
+            username: "User1",
+            profileImage: "user1.jpg",
+            comments: [
+                {
+
+                    id:"1",
+                    text: "Reply to the first comment",
+                    timeStamp: "2023-10-31 12:05 PM",
+                    username: "User2",
+                    profileImage: "user2.jpg",
+                    comments: [] // Empty array for replies
+                }
+            ]
+        },
+        {
+            id:"2",
+            text: "Another comment",
+            timeStamp: "2023-10-31 12:15 PM",
+            username: "User3",
+            profileImage: "user3.jpg",
+            comments: [] // Empty array for comments
         }
+        // You can add more comments here
+    ]
     },
     {
+        id:"fdas",
         title: "The Shawshank Redemption",
         genre: "Drama",
         duration: "2h 22m",
@@ -124,7 +316,55 @@ const movies: Movie[] = [
         image: {
             portrait: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEIVI9fzyx1aiKQ8tfCJv0QXnOSTF_wHYUfg&usqp=CAU",
             landscape: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTC64jeO7HbbxTPS4DYyYpOtZqgwEUVhhjrQ&usqp=CAU"
+        },
+        description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae similique fugit hic ex doloribus animi dolorum. Porro eligendi inventore autem, possimus culpa eius quo alias excepturi mollitia at, suscipit voluptas. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quisquam impedit tenetur saepe, odio, quae omnis eligendi mollitia consectetur atque nulla, in nesciunt nam. Non omnis assumenda mollitia iure quidem nemo.",
+        directors: "Celio Cumba",
+        cast: [
+        {
+            image: "https://randomuser.me/api/portraits/men/96.jpg",
+            name: "John Smith",
+            role: "Celio Cumba"
+        },
+        {
+            image: "https://randomuser.me/api/portraits/men/79.jpg",
+            name: "Jane Doe",
+            role: "The chosen one"
+        },
+        {
+            image: "https://randomuser.me/api/portraits/women/42.jpg",
+            name: "Bob Johnson",
+            role: "Supporting Actor"
+        },
+    ],
+    comments: [
+        {
+            id:"4",
+            text: "This is the first comment",
+            timeStamp: "2023-10-31 12:00 PM",
+            username: "User1",
+            profileImage: "user1.jpg",
+            comments: [
+                {
+
+                    id:"1",
+                    text: "Reply to the first comment",
+                    timeStamp: "2023-10-31 12:05 PM",
+                    username: "User2",
+                    profileImage: "user2.jpg",
+                    comments: [] // Empty array for replies
+                }
+            ]
+        },
+        {
+            id:"2",
+            text: "Another comment",
+            timeStamp: "2023-10-31 12:15 PM",
+            username: "User3",
+            profileImage: "user3.jpg",
+            comments: [] // Empty array for comments
         }
+        // You can add more comments here
+    ]
     }
 ];
 const {items} = {
@@ -163,7 +403,7 @@ const phone = (
                 <Button background="bg-slate-900 border-2 border-white" text={"Download Ticket"}/>
                 <Button text={"Finish"}/>
             </div>
-            <Ticket id={"id"} date={"01/11/2023"} room={0} seats={["A4","B4"]} movie={title} image={image.portrait} qrCode={title} schedule={"12h - 13 30m"}/>
+            <Ticket uid={"id"} id={"id"} date={"01/11/2023"} room={0} seats={["A4","B4"]} movie={title} image={image.portrait} qrCode={title} schedule={"12h - 13 30m"}/>
             <MovieList heading={"More Movies"} movies={movies}/>
             
             <Footer/>
@@ -180,7 +420,7 @@ const laptop = (
                     <div className="flex flex-col items-center gap-4 self-stretch">
                         <div className="flex py-4 px-2 flex-col justify-end items-start gap-2 self-stretch rounded-lg">
                             <MovieAspects heading={"Your booking of  '"+title+"'"+ " was successfull"} text={"The ticket will be sent to your email and will also be stored in-app"}/>
-                            <Ticket id={"id"} date={"01/11/2023"} room={0} seats={["A4","B4"]} movie={title} image={image.portrait} qrCode={title} schedule={"12h - 13 30m"}/>
+                            <Ticket uid="id" id={"id"} date={"01/11/2023"} room={0} seats={["A4","B4"]} movie={title} image={image.portrait} qrCode={title} schedule={"12h - 13 30m"}/>
                             <div className="flex justify-end gap-4 items-start self-stretch w-full">
                                 <Button background="bg-slate-900 border-2 border-white" text={"Download Ticket"}/>
                                 <Button text={"Finish"}/>

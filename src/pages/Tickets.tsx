@@ -10,7 +10,9 @@ import { getTickets } from "../firebase/firestore";
 
 
 export const Tickets = () => {
-    const { authUser, isLoading } = useAuth()
+    const { isLoading } = useAuth()
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const authUser:any = useAuth().authUser
     const [tickets, setTickets] = useState<Array<Ticket>>([{uid:"",id:"",date:"",room:0,seats:[],movie:"",image:"",qrCode:"",schedule:""}])
     const navigate = useNavigate()
     if(!isLoading && !authUser){

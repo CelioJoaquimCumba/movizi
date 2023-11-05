@@ -13,7 +13,7 @@ export const MovieReview = ({comments}:MovieReview) => {
                 <CreateComment username={"Zoe Hernandez"} profileImage={"https://randomuser.me/api/portraits/women/16.jpg"}/>
                 {comments.map((comment,index) =>{
                     return(
-                        <Comment key={index} text={comment.text} timeStamp={comment.timeStamp} username={comment.username} profileImage={comment.profileImage} comments={comment.comments}/>
+                        <Comment id={comment.id} key={index} text={comment.text} timeStamp={comment.timeStamp} username={comment.username} profileImage={comment.profileImage} comments={comment.comments}/>
                     )
                 })}
             </div>

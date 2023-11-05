@@ -49,12 +49,14 @@ const {id, cast,title, image, genre, duration, language, description, rating, co
     ],
     comments: [
         {
+            id:"32",
             text: "This is the first comment",
             timeStamp: "2023-10-31 12:00 PM",
             username: "User1",
             profileImage: "user1.jpg",
             comments: [
                 {
+                    id:"a",
                     text: "Reply to the first comment",
                     timeStamp: "2023-10-31 12:05 PM",
                     username: "User2",
@@ -63,13 +65,6 @@ const {id, cast,title, image, genre, duration, language, description, rating, co
                 }
             ]
         },
-        {
-            text: "Another comment",
-            timeStamp: "2023-10-31 12:15 PM",
-            username: "User3",
-            profileImage: "user3.jpg",
-            comments: [] // Empty array for comments
-        }
         // You can add more comments here
     ],
 
@@ -89,7 +84,9 @@ const {startDate, endDate, schedules,soldSeats} = {
             soldSeats:["A1","A2"],
         }
         export const Booking = () => {
-            const { authUser, isLoading } = useAuth()
+            const { isLoading } = useAuth()
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            const authUser: any = useAuth().authUser
             const navigate = useNavigate()
             if(!isLoading && !authUser){
                 navigate("/login")
@@ -168,7 +165,7 @@ const {startDate, endDate, schedules,soldSeats} = {
                 <NavBar/>
                 <div className="flex py-16 px-24 flex-grow w-full">
                     <div className="flex  py-8 px-14 flex-col justify-center items-center gap-8 self-stretch rounded-2xl bg-black bg-opacity-75 w-full">
-                        <FormProgress index={1}/>
+                        <FormProgress />
                         <MovieHeader id={id} title={title} genre={genre} duration={duration} language={language} image={image} cast={cast} comments={comments} directors={directors} description={description} rating={rating} caption={caption}/>
                         <div className="flex flex-col items-center gap-4 self-stretch">
                             <div className="flex py-4 px-2 flex-col justify-end items-end gap-2 self-stretch rounded-lg">

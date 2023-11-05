@@ -10,6 +10,8 @@ export type NavBar = {
 
 export const NavBar = ({signed = true}: NavBar) => {
     const { authUser, signOut } = useAuth()
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const user: any = authUser
     return(
         <div className="flex py-4 px-2 justify-between items-center bg-gradient-to-t from-black/50  to-black w-full">
             <div className="flex items-center gap-4">
@@ -21,12 +23,11 @@ export const NavBar = ({signed = true}: NavBar) => {
             </div>
             <div>
                 <Menu/>
-                
             </div>
             { signed ?
                 <div className="hidden md:flex h-full gap-2 items-center">
                     {/* <NavItem type="profile" text={"profile"}/> */}
-                    <span className=" text-sm leading-5 font-normal text-white">{authUser?.email}</span>
+                    <span className=" text-sm leading-5 font-normal text-white">{user?.email}</span>
                     <Button text={"Sign out"} onClick={signOut}/>
                 </div>
                 :

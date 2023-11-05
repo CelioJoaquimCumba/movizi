@@ -7,6 +7,7 @@ import { useAuth } from "../firebase/auth";
 import { Movie } from "../models/Movie";
 
 const {title, image}: Movie = {
+    id: "2",
     title: "Spider-Man: No Way Home",
     genre: "Action, Adventure",
     duration: "2h 28m",
@@ -39,12 +40,15 @@ const {title, image}: Movie = {
     ],
     comments: [
         {
+            id:"4",
             text: "This is the first comment",
             timeStamp: "2023-10-31 12:00 PM",
             username: "User1",
             profileImage: "user1.jpg",
             comments: [
                 {
+
+                    id:"1",
                     text: "Reply to the first comment",
                     timeStamp: "2023-10-31 12:05 PM",
                     username: "User2",
@@ -54,6 +58,7 @@ const {title, image}: Movie = {
             ]
         },
         {
+            id:"2",
             text: "Another comment",
             timeStamp: "2023-10-31 12:15 PM",
             username: "User3",

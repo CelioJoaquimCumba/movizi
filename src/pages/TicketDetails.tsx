@@ -16,7 +16,7 @@ export const TicketDetails = () => {
             <NavBar/>
             <div className="flex flex-col px-1 gap-2 items-start self-stretch">
                 <Button text={"Download Ticket"}/>
-                <Ticket id="2" date={"16 Oct 2023"} room={1} seats={["A4","B4"]} movie={"Spiderman: Far From Home"} image={"https://m.media-amazon.com/images/M/MV5BZWMyYzFjYTYtNTRjYi00OGExLWE2YzgtOGRmYjAxZTU3NzBiXkEyXkFqcGdeQXVyMzQ0MzA0NTM@._V1_FMjpg_UX1000_.jpg"} qrCode={"123fdsa"} schedule={"18h 30m - 20h 30m"}/>
+                <Ticket uid="2" id="2" date={"16 Oct 2023"} room={1} seats={["A4","B4"]} movie={"Spiderman: Far From Home"} image={"https://m.media-amazon.com/images/M/MV5BZWMyYzFjYTYtNTRjYi00OGExLWE2YzgtOGRmYjAxZTU3NzBiXkEyXkFqcGdeQXVyMzQ0MzA0NTM@._V1_FMjpg_UX1000_.jpg"} qrCode={"123fdsa"} schedule={"18h 30m - 20h 30m"}/>
             </div>
             <Footer/>
         </div>
