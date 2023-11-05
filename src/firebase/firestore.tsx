@@ -2,8 +2,10 @@ import { addDoc, collection, deleteDoc, doc, getDocs, onSnapshot, orderBy, query
 import { db } from "./firebase"
 import { getDownloadURL } from "firebase/storage";
 import { Ticket } from "../models/Ticket";
+import { Movie } from "../models/Movie";
 
 const TICKETS_COLLECTION = "tickets"
+const MOVIE_COLLECTION = "movies"
 export const addTicket = ({id, date, room, seats, movie, image, qrCode, schedule}:Ticket ) => {
     addDoc(collection(db, TICKETS_COLLECTION), {id, date, room, seats, movie, image, qrCode, schedule})
 }
@@ -25,6 +27,34 @@ export const getTickets = async (uid:string):Promise<Ticket[]> => {
             date: ticket.date,
             room: ticket.room,
             uid: ticket.id
+        })
+    }
+    return allTickets
+
+}
+export const getMovies = async ():Promise<Movie[]> => {
+    const movies = query(collection(db,MOVIE_COLLECTION))
+    const querySnapshot = getDocs(movies)
+
+    const allTickets:Movie[] = []
+    for (const documentSnapshot of (await querySnapshot).docs) {
+        const movie = documentSnapshot.data()
+        allTickets.push({
+            ...movie,
+            id: documentSnapshot.id,
+            title: movie.title,
+            genre: movie.genre,
+            duration: movie.duration,
+            language: movie.language,
+            ranking: movie.ranking,
+            image: movie.image,
+            bookings: movie.booking,
+            rating: movie.rating,
+            description: movie.description,
+            directors: movie.directors,
+            caption: movie.caption,
+            cast: movie.cast,
+            comments: movie.comments
         })
     }
     return allTickets
