@@ -5,11 +5,12 @@ import MovieQuote from "../components/atoms/MovieQuote"
 import { auth } from "../firebase/firebase"
 import StyledFireBaseAuth from 'react-firebaseui/StyledFirebaseAuth'
 import { useState } from "react"
+import { useAuth } from "../firebase/auth"
 
 const   REDIRECT_PAGE = "/"
 
 const uiConfig = {
-    signInFlow : 'redirect',
+    signInFlow : 'popup',
     signInSuccessUrl: REDIRECT_PAGE,
     signInOptions: [
         EmailAuthProvider.PROVIDER_ID,
@@ -19,6 +20,10 @@ const uiConfig = {
 
 export const Login = () => {
     const [login, setLogin] = useState(false)
+    const authUser = useAuth().authUser
+    if(authUser) {
+        window.location.href = REDIRECT_PAGE
+    }
 
     const handleLogin = () => {
         setLogin(true)
