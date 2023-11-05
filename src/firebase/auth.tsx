@@ -8,6 +8,7 @@ const AuthUserContext = createContext({
     isLoading: true,
     signOut: ()=>{},
 })
+// eslint-disable-next-line react-refresh/only-export-components
 export const useFirebaseAuth = () => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const [authUser, setAuthUser ] = useState<any>(null)
@@ -38,6 +39,7 @@ export const useFirebaseAuth = () => {
     useEffect(()=>{
         const unsubscribe = onAuthStateChanged(auth, authStateChanged )
         return () => unsubscribe()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     },[])
 
     return {
@@ -51,4 +53,5 @@ export const AuthUserProvider = ({children}:{children:React.ReactNode}) => {
     return <AuthUserContext.Provider value={auth}>{children}</AuthUserContext.Provider>
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const useAuth = () => useContext(AuthUserContext)

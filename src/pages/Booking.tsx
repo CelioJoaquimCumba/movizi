@@ -12,7 +12,6 @@ import { MovieAspects } from "../components/atoms/MovieAspects";
 import { useNavigate } from "react-router-dom";
 import { addTicket } from "../firebase/firestore";
 import { useState } from "react";
-import { ScheduleTime } from "../components/atoms/ScheduleTime";
 import { Payments } from "../components/organisms/Payments";
 import { useAuth } from "../firebase/auth";
 

@@ -1,6 +1,6 @@
 import { EmailAuthProvider, GoogleAuthProvider } from "firebase/auth"
 import { Button } from "../components/atoms/Button"
-import Input from "../components/atoms/Input"
+// import Input from "../components/atoms/Input"
 import MovieQuote from "../components/atoms/MovieQuote"
 import { auth } from "../firebase/firebase"
 import StyledFireBaseAuth from 'react-firebaseui/StyledFirebaseAuth'

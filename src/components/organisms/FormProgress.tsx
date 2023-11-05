@@ -1,8 +1,8 @@
-import { LocationTrack } from "../molecules/LocationTrack"
+// import { LocationTrack } from "../molecules/LocationTrack"
 type FormProgress = {
     index: 0|1|2
 }
-export const FormProgress = ({index}:FormProgress) => {
+export const FormProgress = () => {
     return (
         <div className="flex justify-between items-center w-full">
             <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
