@@ -6,6 +6,8 @@ import { BookingSummary } from "../components/organisms/BookingSummary";
 import { MovieAspects } from "../components/atoms/MovieAspects";
 import { Ticket } from "../components/molecules/Ticket";
 import { MovieList } from "../components/organisms/MovieList";
+import { useAuth } from "../firebase/auth";
+import { useNavigate } from "react-router-dom";
 
 const {title, image}: Movie = {
     title: "Spider-Man: No Way Home",
@@ -130,6 +132,11 @@ const {items} = {
             
         }
 export const PaymentSuccess = () => {
+    const { authUser, isLoading } = useAuth()
+    const navigate = useNavigate()
+    if(!isLoading && !authUser){
+        navigate("/login")
+    }
     return(
         <div className="w-full h-full">
             <div className="w-full h-full md:hidden">{phone}</div>

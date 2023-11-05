@@ -9,7 +9,8 @@ import { MovieReview } from "../components/organisms/MovieReview";
 import { Movie } from "../models/Movie";
 import { MovieDetails as MovieHeader } from '../components/organisms/MovieDetails'
 import { Cast } from "../components/organisms/Cast";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../firebase/auth";
 
 const {id, cast,title, image, genre, duration, language, description, rating, comments, directors, caption}: Movie = {
     id:"fdasg213d",
@@ -130,6 +131,11 @@ const movies: Movie[] = [
     }
 ];
 export const MovieDetails = () => {
+    const { authUser, isLoading } = useAuth()
+    const navigate = useNavigate()
+    if(!isLoading && !authUser){
+        navigate("/login")
+    }
     return(
         <div className="w-full h-full">
             <div className="w-full h-full md:hidden">{phone}</div>

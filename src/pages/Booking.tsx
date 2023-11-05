@@ -14,6 +14,7 @@ import { addTicket } from "../firebase/firestore";
 import { useState } from "react";
 import { ScheduleTime } from "../components/atoms/ScheduleTime";
 import { Payments } from "../components/organisms/Payments";
+import { useAuth } from "../firebase/auth";
 
 const {id, cast,title, image, genre, duration, language, description, rating, comments, directors, caption}: Movie = {
     id: "id123",
@@ -89,6 +90,12 @@ const {startDate, endDate, schedules,soldSeats} = {
             soldSeats:["A1","A2"],
         }
         export const Booking = () => {
+            const { authUser, isLoading } = useAuth()
+            const navigate = useNavigate()
+            if(!isLoading && !authUser){
+                navigate("/login")
+            }
+
             const [selectedDate, setSelectedDate] = useState("")
             const handleDate = (date:string) => setSelectedDate(date)
 
@@ -102,13 +109,15 @@ const {startDate, endDate, schedules,soldSeats} = {
                     setSelectedSeats([...selectedSeats, seat])
                 }
             }
-            const  navigate = useNavigate()
             const makePayment = async() => {
-                if(Math.floor(Math.random()*2) === 0 ){
+                console.log(authUser)
+                if(!authUser) return
+                if(Math.floor(Math.random()*2) === 0){
                     try {
                         //TODO
-                        await addTicket({
-                            id: "id123",
+                        addTicket({
+                            uid: authUser.uid,
+                            id: authUser.uid,
                             date: selectedDate,
                             room: 4,
                             seats: selectedSeats,

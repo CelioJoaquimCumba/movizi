@@ -1,7 +1,9 @@
+import { useNavigate } from "react-router-dom";
 import { Button } from "../components/atoms/Button"
 import { MovieAspects } from "../components/atoms/MovieAspects";
 import { Footer } from "../components/molecules/Footer";
 import { NavBar } from "../components/molecules/NavBar"
+import { useAuth } from "../firebase/auth";
 import { Movie } from "../models/Movie";
 
 const {title, image}: Movie = {
@@ -63,6 +65,11 @@ const {title, image}: Movie = {
 
 }
 export const PaymentFailure = () => {
+    const { authUser, isLoading } = useAuth()
+    const navigate = useNavigate()
+    if(!isLoading && !authUser){
+        navigate("/login")
+    }
     return(
         <div className="w-full h-full">
             <div className="w-full h-full md:hidden">{phone}</div>
