@@ -1,19 +1,13 @@
 import { Button } from "../components/atoms/Button"
 import { Footer } from "../components/molecules/Footer";
 import { NavBar } from "../components/molecules/NavBar"
-import { FormProgress } from "../components/organisms/FormProgress";
 import { Movie } from "../models/Movie";
-import { MovieDetails as MovieHeader } from '../components/organisms/MovieDetails'
-import { Date } from "../components/organisms/Date";
-import { Schedule } from "../components/organisms/Schedule";
-import { Seatings } from "../components/organisms/Seating";
 import { BookingSummary } from "../components/organisms/BookingSummary";
 import { MovieAspects } from "../components/atoms/MovieAspects";
-import { Payments } from "../components/organisms/Payments";
 import { Ticket } from "../components/molecules/Ticket";
 import { MovieList } from "../components/organisms/MovieList";
 
-const {cast,title, image, genre, duration, language, description, rating, comments, directors, caption}: Movie = {
+const {title, image}: Movie = {
     title: "Spider-Man: No Way Home",
     genre: "Action, Adventure",
     duration: "2h 28m",
@@ -131,19 +125,7 @@ const movies: Movie[] = [
         }
     }
 ];
-const {startDate, endDate, schedules,soldSeats, items} = {
-            startDate:{
-                day: 1,
-                month: 9,
-                year: 2023
-            },
-            endDate:{
-                day: 20,
-                month: 11,
-                year: 2023
-            },
-            schedules : [{startTime: "12h 30m", endTime:"14h"},{ startTime:"15h 15m", endTime:"16h"},{startTime:"17h 30m", endTime:"19h"},{startTime:"20h 30m", endTime:"21h"}],
-            soldSeats:["A1","A2"],
+const {items} = {
             items: [{item:"ticket seat B4",price:100, quantity:1},{item:"Ticket seat B5",price:100, quantity:1},{item:"Ticket seat B6",price:100, quantity:1}]
             
         }
