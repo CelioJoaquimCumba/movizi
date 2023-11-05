@@ -19,9 +19,10 @@ const monthsOfYear = [
 export type DatePicker = {
     startDate: {day: number, month:number, year:number}
     endDate:{day: number, month:number, year:number}
+    updateDate : (date:string) => void
 }
 
-export const DatePicker = ({startDate,endDate}:DatePicker) => {
+export const DatePicker = ({startDate,endDate, updateDate}:DatePicker) => {
     const date = new Date()
     const [ month, setMonth ] = useState(date.getMonth())
     const [year, setYear] = useState(date.getFullYear())
@@ -84,6 +85,7 @@ export const DatePicker = ({startDate,endDate}:DatePicker) => {
     }
     const handleSelect = (day: string) => {
         setSelectedDate(`${day}-${monthsOfYear[month]}-${year}`)
+        updateDate(`${day}-${monthsOfYear[month]}-${year}`)
         handleOpen()
     }
     const handleOpen = () => {
