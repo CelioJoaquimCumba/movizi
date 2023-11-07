@@ -12,12 +12,12 @@ export const TopMovies = ({movies}:TopMovies) => {
             <div className=" hidden md:flex flex-row items-start gap-2 self-stretch ">
                 <CardMovie type="rank" orientation="vertical" {...movies[0]}/>
                 <div className="flex flex-col items-start gap-2  self-stretch w-full">
-                    <CardMovie type="rank" orientation="horizontal" {...movies[1]}/>
-                    <CardMovie type="rank" orientation="horizontal" {...movies[2]}/>
+                    {movies.length>1 && <CardMovie type="rank" orientation="horizontal" {...movies[1]}/>}
+                    {movies.length>2 && <CardMovie type="rank" orientation="horizontal" {...movies[2]}/>}
                 </div>
                 <div className="flex flex-col items-start gap-2 self-stretch w-full">
-                    <CardMovie type="rank" orientation="horizontal" {...movies[3]}/>
-                    <CardMovie type="rank" orientation="horizontal" {...movies[4]}/>
+                    {movies.length > 3 && <CardMovie type="rank" orientation="horizontal" {...movies[3]}/>}
+                    {movies.length > 4 && <CardMovie type="rank" orientation="horizontal" {...movies[4]}/>}
                 </div>
             </div>
             <div className="flex flex-col items-start gap-2 self-stretch md:hidden">
