@@ -24,11 +24,9 @@ export const Tickets = () => {
             if(authUser){
                 const tickets = await getTickets(authUser.uid)
                 setTickets(tickets)
-                console.log(tickets,"nm")
             }
             // ...
         }
-        console.log(authUser)
         fetchData()
     },[authUser])
     return(
