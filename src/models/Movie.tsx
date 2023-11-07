@@ -14,5 +14,6 @@ export type Movie = {
     directors?: string,
     caption?: string,
     cast: Array<{image?: string, name:string, role?:string}>,
-    comments: Array<Comment>
+    comments: Array<Comment>,
+    released: boolean
 }
