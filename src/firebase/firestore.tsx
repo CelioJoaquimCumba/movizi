@@ -1,4 +1,4 @@
-import { addDoc, collection, getDocs, query, where } from "firebase/firestore";
+import { addDoc, collection, doc, getDoc, getDocs, query, where } from "firebase/firestore";
 import { db } from "./firebase"
 import { Ticket } from "../models/Ticket";
 import { Movie } from "../models/Movie";
@@ -53,9 +53,47 @@ export const getMovies = async ():Promise<Movie[]> => {
             directors: movie.directors,
             caption: movie.caption,
             cast: movie.cast,
-            comments: movie.comments
+            comments: movie.comments,
+            released: movie.released
         })
     }
     return allTickets
 
+}
+
+export const getMovieById = async(id: string): Promise<Movie|null> => {
+    const docRef = doc(db,MOVIE_COLLECTION,id)
+    let docSnap
+    try {
+        docSnap = await getDoc(docRef)
+    }
+    catch(error) {
+        console.log(error)
+    }
+    if(!docSnap){
+        return null
+    }
+    const data= docSnap.data()
+    if(!data){
+        return null
+    }
+    const movie: Movie = {
+        id:id,
+        title: data.title,
+        genre: data.genre,
+        duration: data.duration,
+        language: data.language,
+        ranking: data.ranking,
+        image: data.image,
+        bookings: data.bookings,
+        rating: data.rating,
+        description: data.description,
+        directors: data.directors,
+        caption: data.caption,
+        cast: data.cast,
+        comments: data.coments,
+        released: data.released
+}
+
+    return movie
 }
