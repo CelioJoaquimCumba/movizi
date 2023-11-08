@@ -5,8 +5,9 @@ import { Movie } from "../models/Movie";
 
 const TICKETS_COLLECTION = "tickets"
 const MOVIE_COLLECTION = "movies"
-export const addTicket = ({id, date, room, seats, movie, image, qrCode, schedule}:Ticket ) => {
-    addDoc(collection(db, TICKETS_COLLECTION), {id, date, room, seats, movie, image, qrCode, schedule})
+export const addTicket = async ({id, date, room, seats, movie, image, qrCode, schedule}:Ticket ):Promise<string> => {
+    const reference = await addDoc(collection(db, TICKETS_COLLECTION), {id, date, room, seats, movie, image, qrCode, schedule})
+    return reference.id
 }
 export const getTickets = async (uid:string):Promise<Ticket[]> => {
     const tickets = query(collection(db,TICKETS_COLLECTION),where("id","==",uid))
@@ -96,4 +97,37 @@ export const getMovieById = async(id: string): Promise<Movie|null> => {
 }
 
     return movie
+}
+
+
+export const getTicketById = async(id: string): Promise<Ticket|null> => {
+    const docRef = doc(db,TICKETS_COLLECTION,id)
+    let docSnap
+    try {
+        docSnap = await getDoc(docRef)
+    }
+    catch(error) {
+        console.log(error)
+    }
+    if(!docSnap){
+        return null
+    }
+    const data= docSnap.data()
+    if(!data){
+        return null
+    }
+    const ticket: Ticket = {
+        id:id,
+        uid:data.uid,
+        date: data.date,
+        room: data.room,
+        seats: data.seats,
+        movie: data.movie,
+        image: data.image,
+        qrCode: data.qrCode,
+        schedule: data.schedule,
+        expired: data.expired
+}
+
+    return ticket
 }

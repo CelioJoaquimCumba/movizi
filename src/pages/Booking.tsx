@@ -9,13 +9,13 @@ import { Schedule } from "../components/organisms/Schedule";
 import { Seatings } from "../components/organisms/Seating";
 import { BookingSummary } from "../components/organisms/BookingSummary";
 import { MovieAspects } from "../components/atoms/MovieAspects";
-import { useNavigate } from "react-router-dom";
-import { addTicket } from "../firebase/firestore";
-import { useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { addTicket, getMovieById } from "../firebase/firestore";
+import { useEffect, useState } from "react";
 import { Payments } from "../components/organisms/Payments";
 import { useAuth } from "../firebase/auth";
 
-const {id, cast,title, image, genre, duration, language, description, rating, comments, directors, caption}: Movie = {
+const MovieData: Movie = {
     released: true,
     id: "id123",
     title: "Spider-Man: No Way Home",
@@ -84,56 +84,71 @@ const {startDate, endDate, schedules,soldSeats} = {
             schedules : [{startTime: "12h 30m", endTime:"14h"},{ startTime:"15h 15m", endTime:"16h"},{startTime:"17h 30m", endTime:"19h"},{startTime:"20h 30m", endTime:"21h"}],
             soldSeats:["A1","A2"],
         }
-        export const Booking = () => {
-            const { isLoading } = useAuth()
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            const authUser: any = useAuth().authUser
-            const navigate = useNavigate()
-            if(!isLoading && !authUser){
-                navigate("/login")
-            }
-
-            const [selectedDate, setSelectedDate] = useState("")
-            const handleDate = (date:string) => setSelectedDate(date)
-
-            const [selectedSchedule, setSelectedSchedule] = useState("")
-            const handleSchedule = (schedule:string) => setSelectedSchedule(schedule)
-            const [ selectedSeats, setSelectedSeats] = useState<Array<string>>([])
-            const handleSeats = (seat:string) => {
-                if(selectedSeats.find(s => s === seat)){
-                    setSelectedSeats(selectedSeats.filter(s => s !== seat))
-                }else{
-                    setSelectedSeats([...selectedSeats, seat])
+export const Booking = () => {
+    const movieId = useParams().id
+    const [movie, setMovie ] = useState<Movie>(MovieData)
+    const {id, cast,title, image, genre, duration, language, description, rating, comments, directors, caption} = movie
+    const { isLoading } = useAuth()
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const authUser: any = useAuth().authUser
+    const navigate = useNavigate()
+    useEffect(()=>{
+        async function fetchData() {
+            // You can await here
+            if(authUser && movieId){
+                const movie = await getMovieById(movieId)
+                if(!movie){
+                    return
                 }
+                setMovie(movie)
             }
-            const makePayment = async() => {
-                console.log(authUser)
-                if(!authUser) return
-                if(Math.floor(Math.random()*2) === 0){
-                    try {
-                        //TODO
-                        addTicket({
-                            uid: authUser.uid,
-                            id: authUser.uid,
-                            date: selectedDate,
-                            room: 4,
-                            seats: selectedSeats,
-                            movie: title,
-                            image: image.portrait,
-                            qrCode: "123",
-                            schedule: selectedSchedule
-                        })
-                        navigate("/payment-success")
-                    } catch (error) {
-                        navigate("/payment-failure")
-                    }
-                }else{
-                    navigate("/payment-failure")
-                }
+        }
+        fetchData()
+    },[authUser, movieId])
+    if(!isLoading && !authUser){
+        navigate("/login")
+    }
+
+    const [selectedDate, setSelectedDate] = useState("")
+    const handleDate = (date:string) => setSelectedDate(date)
+
+    const [selectedSchedule, setSelectedSchedule] = useState("")
+    const handleSchedule = (schedule:string) => setSelectedSchedule(schedule)
+    const [ selectedSeats, setSelectedSeats] = useState<Array<string>>([])
+    const handleSeats = (seat:string) => {
+        if(selectedSeats.find(s => s === seat)){
+            setSelectedSeats(selectedSeats.filter(s => s !== seat))
+        }else{
+            setSelectedSeats([...selectedSeats, seat])
+        }
+    }
+    const makePayment = async() => {
+        console.log(authUser)
+        if(!authUser) return
+        if(Math.floor(Math.random()*2) === 0 || true){
+            try {
+                const ticketId = await addTicket({
+                    uid: authUser.uid,
+                    id: authUser.uid,
+                    date: selectedDate,
+                    room: 4,
+                    seats: selectedSeats,
+                    movie: title,
+                    image: image.portrait,
+                    qrCode: "123",
+                    schedule: selectedSchedule
+                })
+                navigate(`/payment-success/${ticketId}`)
+            } catch (error) {
+                navigate("/payment-failure")
             }
-            const items = selectedSeats.map(seat => ({
-                item:"Ticket seat: "+seat,price:10, quantity:1
-            }))
+        }else{
+            navigate("/payment-failure")
+        }
+    }
+    const items = selectedSeats.map(seat => ({
+        item:"Ticket seat: "+seat,price:10, quantity:1
+    }))
     const phone = (
         <div className="w-full h-full"  >
             <div style={{ backgroundImage: `url(${image.portrait}})`, backgroundSize: "cover" }} className={`flex md:hidden flex-col items-start gap-2 self-stretch`}>

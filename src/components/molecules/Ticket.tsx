@@ -24,7 +24,7 @@ export const Ticket = ({date, room, seats, movie, image, qrCode}: props) => {
                 </div>
                 <div className={` border-white border-dashed border-2 h-1 w-full md:h-full md:w-1`}></div>
                 <QRCode
-                    value={qrCode}
+                    value={qrCode ? qrCode : ""}
                     className="w-full aspect-square"
                 />
             </div>
