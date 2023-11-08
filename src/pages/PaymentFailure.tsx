@@ -7,6 +7,7 @@ import { useAuth } from "../firebase/auth";
 import { Movie } from "../models/Movie";
 
 const {title, image}: Movie = {
+    released:true,
     id: "2",
     title: "Spider-Man: No Way Home",
     genre: "Action, Adventure",

@@ -7,9 +7,6 @@ export const Menu = () => {
     const handleClick = () => {
         setIsOpen(isOpen => !isOpen)
     }
-    const handleSignOut = () => {
-        signOut
-    }
     return(
         <div className="flex flex-col">
             <svg className="flex md:hidden" onClick={handleClick} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -18,7 +15,7 @@ export const Menu = () => {
             <div id="dropdown" className={`${isOpen ? "flex" : "hidden"} flex-col absolute top-14 right-0 z-10  bg-black bg-opacity-75 w-2/3 gap-2  divide-y-2 divide-black`}>
                 <NavItem text={"Home"} link={"/"}/>
                 <NavItem text={"Tickets"} link={"/tickets"}/>
-                <div onClick={()=>signOut()}>
+                <div onClick={()=>signOut}>
                     <NavItem text={"Sign Up"} link={""}/>
                 </div>
             </div>

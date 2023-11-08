@@ -16,6 +16,7 @@ import { Payments } from "../components/organisms/Payments";
 import { useAuth } from "../firebase/auth";
 
 const {id, cast,title, image, genre, duration, language, description, rating, comments, directors, caption}: Movie = {
+    released: true,
     id: "id123",
     title: "Spider-Man: No Way Home",
     genre: "Action, Adventure",
@@ -166,7 +167,7 @@ const {startDate, endDate, schedules,soldSeats} = {
                 <div className="flex py-16 px-24 flex-grow w-full">
                     <div className="flex  py-8 px-14 flex-col justify-center items-center gap-8 self-stretch rounded-2xl bg-black bg-opacity-75 w-full">
                         <FormProgress />
-                        <MovieHeader id={id} title={title} genre={genre} duration={duration} language={language} image={image} cast={cast} comments={comments} directors={directors} description={description} rating={rating} caption={caption}/>
+                        <MovieHeader released id={id} title={title} genre={genre} duration={duration} language={language} image={image} cast={cast} comments={comments} directors={directors} description={description} rating={rating} caption={caption}/>
                         <div className="flex flex-col items-center gap-4 self-stretch">
                             <div className="flex py-4 px-2 flex-col justify-end items-end gap-2 self-stretch rounded-lg">
                                 {/* <div className="flex justify-center items-start gap-2 self-stretch"> */}

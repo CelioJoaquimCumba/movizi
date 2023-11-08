@@ -15,6 +15,7 @@ import { getMovieById, getMovies } from "../firebase/firestore";
 import { useEffect, useState } from "react";
 
 const MovieData: Movie = {
+    released: false,
     id:"fdasg213d",
     title: "Spider-Man: No Way Home",
     genre: "Action, Adventure",
@@ -78,6 +79,7 @@ const MovieData: Movie = {
 }
 const moviesData: Movie[] = [
     {
+        released: false,
         id:"fads",
         title: "Spider-Man: No Way Home",
         genre: "Action, Adventure",
@@ -139,6 +141,7 @@ const moviesData: Movie[] = [
     ]
     },
     {
+        released: false,
         id:"fdas",
         title: "Inception",
         genre: "Science Fiction, Action",
@@ -199,6 +202,7 @@ const moviesData: Movie[] = [
     ]
     },
     {
+        released: false,
         id:"fdas",
         title: "Batman: The Dark Knight",
         genre: "Action, Crime, Drama",
@@ -260,6 +264,7 @@ const moviesData: Movie[] = [
         
     },
     {
+        released: true,
         id:"FDAS",
         title: "Pulp Fiction",
         genre: "Crime, Drama",
@@ -320,6 +325,7 @@ const moviesData: Movie[] = [
     ]
     },
     {
+        released: true,
         id:"fdas",
         title: "The Shawshank Redemption",
         genre: "Drama",
@@ -401,7 +407,7 @@ export const MovieDetails = () => {
             }
         }
         fetchData()
-    },[authUser])
+    },[authUser, movieId])
     const navigate = useNavigate()
     if(!isLoading && !authUser){
         navigate("/login")
@@ -414,7 +420,7 @@ export const MovieDetails = () => {
                     <div className="flex px-4 flex-col items-start gap-2 flex-grow self-stretch">
                         <div className="flex p-4 flex-col justify-end items-center gap-2 self-stretch">
                             <img src={image.header} alt="header"className="w-full" />
-                            <Rating rating={rating} />
+                            <Rating rating={rating != undefined ? rating : 0} />
                             <Link to={`/booking/${id}`}>
                                 <Button text="Book Now"/>
                             </Link>
@@ -424,7 +430,7 @@ export const MovieDetails = () => {
             </div>
             {/* header for md */}
         <div className="flex px-4 flex-col items-start gap-2 flex-grow self-stretch bg-black">
-            <MovieAspects heading={title} text={description}/>
+            <MovieAspects heading={title} text={description != undefined ?  description: ""}/>
             <div className="flex justify-between items-start self-stretch">
                 <MovieAspects heading={""} text={genre}/>
                 <MovieAspects heading="" text={duration}/>
@@ -444,7 +450,7 @@ export const MovieDetails = () => {
                 <div className="flex py-16 px-24 flex-grow w-full">
                     <div className="flex  py-8 px-14 flex-col justify-center items-center gap-8 self-stretch rounded-2xl bg-black bg-opacity-75 w-full">
                         <FormProgress />
-                        <MovieHeader id={id} title={title} genre={genre} duration={duration} language={language} image={image} cast={cast} comments={comments} directors={directors} description={description} rating={rating} caption={caption}/>
+                        <MovieHeader released id={id} title={title} genre={genre} duration={duration} language={language} image={image} cast={cast} comments={comments} directors={directors} description={description} rating={rating} caption={caption}/>
                         <div className="flex flex-col items-end justify-center gap-2 self-stretch">
                             <Button text={"Get Ticket"}/>
                         </div>

@@ -10,6 +10,7 @@ import { useAuth } from "../firebase/auth";
 import { useNavigate } from "react-router-dom";
 
 const {title, image}: Movie = {
+    released: true,
     id: "1",
     title: "Spider-Man: No Way Home",
     genre: "Action, Adventure",
@@ -65,6 +66,7 @@ const {title, image}: Movie = {
 }
 const movies: Movie[] = [
     {
+        released: true,
         id:"fads",
         title: "Spider-Man: No Way Home",
         genre: "Action, Adventure",
@@ -126,6 +128,7 @@ const movies: Movie[] = [
     ]
     },
     {
+        released: true,
         id:"fdas",
         title: "Inception",
         genre: "Science Fiction, Action",
@@ -186,6 +189,7 @@ const movies: Movie[] = [
     ]
     },
     {
+        released: true,
         id:"fdas",
         title: "Batman: The Dark Knight",
         genre: "Action, Crime, Drama",
@@ -247,6 +251,7 @@ const movies: Movie[] = [
         
     },
     {
+        released: true,
         id:"FDAS",
         title: "Pulp Fiction",
         genre: "Crime, Drama",
@@ -307,6 +312,7 @@ const movies: Movie[] = [
     ]
     },
     {
+        released: true,
         id:"fdas",
         title: "The Shawshank Redemption",
         genre: "Drama",
