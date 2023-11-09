@@ -368,10 +368,12 @@ export const PaymentSuccess = () => {
             <div className="flex px-4 flex-col items-start gap-2 flex-grow self-stretch bg-black">
                 <MovieAspects heading={"You have completed your '"+movie+"'"+ " booking"} text={"The ticket will be sent to your email and will also be stored in-app"}/>
                 <div className="flex justify-between items-start self-stretch w-full">
-                    <Button background="bg-slate-900 border-2 border-white" text={"Download Ticket"}/>
-                    <Button text={"Finish"}/>
+                    <Button background="bg-slate-900 border-2 border-white" text={"Download Ticket"} onClick={()=>toPDF()}/>
+                    <Button text={"Finish"} onClick={()=>navigate("/")}/>
                 </div>
-                <Ticket uid={"id"} id={"id"} date={"01/11/2023"} room={0} seats={["A4","B4"]} movie={movie} image={image} qrCode={movie} schedule={"12h - 13 30m"}/>
+                <div ref={targetRef}>
+                    <Ticket uid={"id"} id={"id"} date={"01/11/2023"} room={0} seats={["A4","B4"]} movie={movie} image={image} qrCode={movie} schedule={"12h - 13 30m"}/>
+                </div>
                 <MovieList heading={"More Movies"} movies={movies}/>
                 
                 <Footer/>
