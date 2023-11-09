@@ -13,7 +13,7 @@ const uiConfig = {
     signInFlow : 'popup',
     signInSuccessUrl: REDIRECT_PAGE,
     signInOptions: [
-        EmailAuthProvider.PROVIDER_ID,
+        // EmailAuthProvider.PROVIDER_ID,
         GoogleAuthProvider.PROVIDER_ID
     ]
 }
