@@ -12,6 +12,7 @@ export const MovieReview = ({comments}:MovieReview) => {
             <div className="flex flex-col items-start gap-4 self-stretch">
                 <CreateComment username={"Zoe Hernandez"} profileImage={"https://randomuser.me/api/portraits/women/16.jpg"}/>
                 {comments && comments.map((comment,index) =>{
+                    console.log(comment)
                     return(
                         <Comment id={comment.id} key={index} text={comment.text} timeStamp={comment.timeStamp} username={comment.username} profileImage={comment.profileImage} comments={comment.comments}/>
                     )
