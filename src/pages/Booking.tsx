@@ -125,7 +125,7 @@ export const Booking = () => {
     const makePayment = async() => {
         console.log(authUser)
         if(!authUser) return
-        if(Math.floor(Math.random()*2) === 0 || true){
+        if(Math.floor(Math.random()*5) !== 0 ){
             try {
                 const ticketId = await addTicket({
                     uid: authUser.uid,
