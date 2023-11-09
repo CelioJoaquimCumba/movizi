@@ -21,7 +21,7 @@ export const TopMovies = ({movies}:TopMovies) => {
                 </div>
             </div>
             <div className="flex flex-col items-start gap-2 self-stretch md:hidden">
-                {movies.filter((movie, index) => index < 3).map((movie) => {
+                {movies.filter((movie, index) => index < 3 && movie).map((movie) => {
                     return(
                         <MovieChartItem key={movie.title} id={movie.id} ranking={movie.ranking ? movie.ranking : 0} title={movie.title} image={movie.image.portrait} bookings={movie.bookings ? movie.bookings : 0}/>
                     )
