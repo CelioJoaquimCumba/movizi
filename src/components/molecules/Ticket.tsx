@@ -5,7 +5,7 @@ import QRCode from "react-qr-code"
 
 export const Ticket = ({date, room, seats, movie, image, qrCode}: props) => {
     return (
-        <div className={`flex p-1 w-full md:w-fit flex-col md:flex-row items-start rounded-2xl border-2 border-slate-700`}>
+        <div className={`flex p-1 w-full md:w-fit flex-col md:flex-row items-start rounded-2xl border-2 border-slate-700 bg-black`}>
             <div className={`flex py-4 px-2 flex-col items-start gap-2 self-stretch rounded-t-2xl md:rounded-s-2xl  bg-black `}>
                 <div className="flex items-center gap-2 self-stretch">
                     <svg xmlns="http://www.w3.org/2000/svg" width="1.5rem" height="1.5rem" viewBox="0 0 24 24" fill="none">

@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom"
 import { Ticket } from "../../models/Ticket"
 
 type MovieInfo = {
@@ -8,9 +9,14 @@ type MovieInfo = {
     image: string
 }
 
-export const MovieInfo = ({date, schedule, movie, seats, image}: Ticket) => {
+export const MovieInfo = ({id, date, schedule, movie, seats, image}: Ticket) => {
+    const navigate = useNavigate()
+    const handleClick = () => {
+        console.log("here")
+        navigate(`/ticket/${id}`)
+    }
     return(
-        <div className="flex p-4 justify-center items-start gap-4 rounded-xl bg-slate-900 hover:bg-slate-800 w-full">
+        <div onClick={handleClick} className="flex p-4 justify-center items-start gap-4 rounded-xl bg-slate-900 hover:bg-slate-800 w-full">
             <img className="rounded-xl object-cover w-32 aspect-square" src={image} alt={`${movie} ticket`}/>
             <div className="flex flex-col items-start gap-4 flex-grow">
                 <span className="text-sm leading-5 font-semibold text-white self-stretch whitespace-nowrap">{movie}</span>

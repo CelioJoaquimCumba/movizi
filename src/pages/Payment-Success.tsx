@@ -11,6 +11,7 @@ import { useEffect, useState } from "react";
 import { Ticket as TicketType } from "../models/Ticket";
 import { getTicketById } from "../firebase/firestore";
 import { Ticket } from "../components/molecules/Ticket";
+import { usePDF } from "react-to-pdf";
 
 
 const movies: Movie[] = [
@@ -334,6 +335,7 @@ export const PaymentSuccess = () => {
     const [ticket, setTicket] = useState<TicketType>({uid:"",id:"",date:"",room:0,seats:[],movie:"",image:"",qrCode:"",schedule:""})
     const { movie, image } = ticket
     const navigate = useNavigate()
+    const { toPDF, targetRef } = usePDF({filename: 'page.pdf'});
     useEffect(()=>{
         async function fetchData() {
             // You can await here

@@ -1,22 +1,48 @@
-import { useNavigate } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { Button } from "../components/atoms/Button"
 import { Footer } from "../components/molecules/Footer"
 import { NavBar } from "../components/molecules/NavBar"
 import { Ticket } from "../components/molecules/Ticket"
 import { useAuth } from "../firebase/auth"
+import { Ticket as TicketType } from "../models/Ticket"
+import { useEffect, useState } from "react"
+import { usePDF } from 'react-to-pdf'
+import { getTicketById } from "../firebase/firestore"
 
 export const TicketDetails = () => {
-    const { authUser, isLoading } = useAuth()
+    const { isLoading } = useAuth()
+    const ticketId = useParams().id
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const authUser:any = useAuth().authUser
+    const [ticket, setTicket] = useState<TicketType>({uid:"",id:"",date:"",room:0,seats:[],movie:"",image:"",qrCode:"",schedule:""})
+    const  {uid, id, date, room, seats, movie, image, qrCode, schedule} = ticket
+    useEffect(()=>{
+        async function fetchData() {
+            // You can await here
+            if(authUser && ticketId){
+                const ticket = await getTicketById(ticketId)
+                if(!ticket){
+                    return
+                }
+                setTicket(ticket)
+                console.log(ticket)
+            }
+        }
+        fetchData()
+    },[authUser, ticketId])
     const navigate = useNavigate()
     if(!isLoading && !authUser){
         navigate("/login")
     }
+    const { toPDF, targetRef } = usePDF({filename: 'page.pdf'});
     return(
         <div className="flex flex-col items-start gap-2 w-full h-full min-h-screen bg-black">
             <NavBar/>
             <div className="flex flex-col px-1 gap-2 items-start self-stretch">
-                <Button text={"Download Ticket"}/>
-                <Ticket uid="2" id="2" date={"16 Oct 2023"} room={1} seats={["A4","B4"]} movie={"Spiderman: Far From Home"} image={"https://m.media-amazon.com/images/M/MV5BZWMyYzFjYTYtNTRjYi00OGExLWE2YzgtOGRmYjAxZTU3NzBiXkEyXkFqcGdeQXVyMzQ0MzA0NTM@._V1_FMjpg_UX1000_.jpg"} qrCode={"123fdsa"} schedule={"18h 30m - 20h 30m"}/>
+                <Button text={"Download Ticket"} onClick={()=> toPDF()}/>
+                <div ref={targetRef} >
+                    <Ticket uid={uid} id={id} date={date} room={room} seats={seats} movie={movie} image={image} qrCode={qrCode} schedule={schedule}/>
+                </div>
             </div>
             <Footer/>
         </div>
