@@ -92,7 +92,7 @@ export const getMovieById = async(id: string): Promise<Movie|null> => {
         directors: data.directors,
         caption: data.caption,
         cast: data.cast,
-        comments: data.coments,
+        comments: data.comments,
         released: data.released
 }
 
