@@ -1,7 +1,8 @@
-import { addDoc, collection, doc, getDoc, getDocs, query, where } from "firebase/firestore";
+import { addDoc, collection, doc, getDoc, getDocs, query, updateDoc, where } from "firebase/firestore";
 import { db } from "./firebase"
 import { Ticket } from "../models/Ticket";
 import { Movie } from "../models/Movie";
+import { Comment } from "../models/Comment";
 
 const TICKETS_COLLECTION = "tickets"
 const MOVIE_COLLECTION = "movies"
@@ -131,3 +132,35 @@ export const getTicketById = async(id: string): Promise<Ticket|null> => {
 
     return ticket
 }
+
+export const addCommentToMovie = async (movieId:string, comment:Comment) => {
+  const movieRef = doc(db, MOVIE_COLLECTION, movieId);
+
+  // Get the current movie data
+  const movieSnap = await getDoc(movieRef)
+  if (!movieSnap.exists()) {
+    console.error("Movie not found");
+    return;
+  }
+
+  const movieData = movieSnap.data();
+
+  // Update the comments array with the new comment
+  const updatedComments = [comment,...(movieData.comments || [])];
+
+
+  // Update the movie document with the new comments array
+  try {
+    await updateDoc(movieRef, {
+      comments: updatedComments,
+    });
+
+
+    console.log("Comment added successfully");
+  } catch (error) {
+    console.error("Error adding comment:", error);
+  }
+};
+
+
+

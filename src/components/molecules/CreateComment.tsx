@@ -1,12 +1,21 @@
+import { useState } from "react"
 import { Button } from "../atoms/Button"
 import Input from "../atoms/Input"
 
 type CreateComment =  {
     username: string,
-    profileImage: string
+    profileImage: string,
+    addComment: (comment:string)=>void
 }
 
-export const CreateComment = ({username, profileImage}: CreateComment) => {
+export const CreateComment = ({username, profileImage, addComment}: CreateComment) => {
+    const handleComment = () => {
+        addComment(input)
+    }
+    const [input, setInput ] = useState("")
+    const handleChange = (e:React.FormEvent<HTMLInputElement>) => {
+        setInput(e.currentTarget.value)
+    }
     return (
         <div className="flex py-2 px-4 flex-col gap-2 items-start rounded bg-black w-full">
             <div className="flex flex-start items-center gap-2">
@@ -16,8 +25,8 @@ export const CreateComment = ({username, profileImage}: CreateComment) => {
                 </div>
             </div>
             <div className="flex p-1 items-end gap-2 self-stretch">
-                <Input  label={"Add Comment"} placeholder={"comment here"}/>
-                <Button text={"Post"}/>
+                <Input onChange={handleChange} value={input}  label={"Add Comment"} placeholder={"comment here"}/>
+                <Button text={"Post"} onClick={handleComment}/>
             </div>
         </div>
     )

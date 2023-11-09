@@ -1,5 +1,3 @@
-import React from 'react';
-
 type Input = {
     label : string,
     placeholder: string,
@@ -7,6 +5,7 @@ type Input = {
 
 } & React.HTMLProps<HTMLInputElement>
 const Input = ({label, placeholder,...props}: Input) => {
+
     return (
         <div className='flex flex-col items-start gap-1 rounded w-full flex-shrink'>
             <label className='text-sm leading-5 font-normal text-white'>{label}</label>

@@ -13,6 +13,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { useAuth } from "../firebase/auth";
 import { getMovieById, getMovies } from "../firebase/firestore";
 import { useEffect, useState } from "react";
+import { auth } from "../firebase/firebase";
 
 const MovieData: Movie = {
     released: false,
@@ -412,6 +413,7 @@ export const MovieDetails = () => {
     if(!isLoading && !authUser){
         navigate("/login")
     }
+    
     const phone = (
     <div className="w-full h-full"  >
         <div style={{ backgroundImage: `url(${image.portrait}})`, backgroundSize: "cover" }} className={`flex md:hidden flex-col items-start gap-2 self-stretch`}>
@@ -437,7 +439,7 @@ export const MovieDetails = () => {
             </div>
             <MovieAspects heading="Cast" text={cast.map(castMember=>castMember.name).toString()}/>
             <MovieList heading={"More Movies"} movies={movies}/>
-            <MovieReview comments={comments}/>
+            <MovieReview movieId={movieId} comments={comments}/>
             <Footer/>
         </div>
     </div>
@@ -456,7 +458,7 @@ export const MovieDetails = () => {
                         </div>
                         <Cast cast={cast}/>
                         <MovieList heading={"More Movies"} movies={movies}/>
-                        <MovieReview comments={comments}/>
+                        <MovieReview movieId={movieId} comments={comments}/>
                     </div>
                 </div>
 
