@@ -13,7 +13,6 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { useAuth } from "../firebase/auth";
 import { getMovieById, getMovies } from "../firebase/firestore";
 import { useEffect, useState } from "react";
-import { auth } from "../firebase/firebase";
 
 const MovieData: Movie = {
     released: false,

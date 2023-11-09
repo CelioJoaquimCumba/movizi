@@ -1,4 +1,4 @@
-import { EmailAuthProvider, GoogleAuthProvider } from "firebase/auth"
+import { GoogleAuthProvider } from "firebase/auth"
 import { Button } from "../components/atoms/Button"
 // import Input from "../components/atoms/Input"
 import MovieQuote from "../components/atoms/MovieQuote"
