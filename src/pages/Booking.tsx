@@ -1,7 +1,6 @@
 import { Button } from "../components/atoms/Button"
 import { Footer } from "../components/molecules/Footer";
 import { NavBar } from "../components/molecules/NavBar"
-import { FormProgress } from "../components/organisms/FormProgress";
 import { Movie } from "../models/Movie";
 import { MovieDetails as MovieHeader } from '../components/organisms/MovieDetails'
 import { Date } from "../components/organisms/Date";
@@ -185,7 +184,6 @@ export const Booking = () => {
                 <NavBar/>
                 <div className="flex py-16 px-24 flex-grow w-full">
                     <div className="flex  py-8 px-14 flex-col justify-center items-center gap-8 self-stretch rounded-2xl bg-black bg-opacity-75 w-full">
-                        <FormProgress />
                         <MovieHeader released id={id} title={title} genre={genre} duration={duration} language={language} image={image} cast={cast} comments={comments} directors={directors} description={description} rating={rating} caption={caption}/>
                         <div className="flex flex-col items-center gap-4 self-stretch">
                             <div className="flex py-4 px-2 flex-col justify-end items-end gap-2 self-stretch rounded-lg">
