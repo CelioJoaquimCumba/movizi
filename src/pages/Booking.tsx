@@ -141,7 +141,7 @@ export const Booking = () => {
                     image: image.portrait,
                     qrCode: "123",
                     schedule: selectedSchedule
-                })
+                },movieId)
                 navigate(`/payment-success/${ticketId}`)
             } catch (error) {
                 navigate("/payment-failure")

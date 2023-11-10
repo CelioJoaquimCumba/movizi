@@ -6,8 +6,26 @@ import { Comment } from "../models/Comment";
 
 const TICKETS_COLLECTION = "tickets"
 const MOVIE_COLLECTION = "movies"
-export const addTicket = async ({id, date, room, seats, movie, image, qrCode, schedule}:Ticket ):Promise<string> => {
+export const addTicket = async ({id, date, room, seats, movie, image, qrCode, schedule}:Ticket, movieId:string ):Promise<string> => {
     const reference = await addDoc(collection(db, TICKETS_COLLECTION), {id, date, room, seats, movie, image, qrCode, schedule})
+    const movieRef = doc(db, MOVIE_COLLECTION, movieId);
+    const movieSnap = await getDoc(movieRef);
+
+    if (movieSnap.exists()) {
+        const movieData = movieSnap.data();
+        const updatedBookings = (movieData.bookings || 0) + 1;
+
+        try {
+        await updateDoc(movieRef, {
+            bookings: updatedBookings,
+        });
+        console.log("Movie bookings updated successfully");
+        } catch (error) {
+        console.error("Error updating movie bookings:", error);
+        }
+    } else {
+        console.error("Movie not found");
+    }
     return reference.id
 }
 export const getTickets = async (uid:string):Promise<Ticket[]> => {
