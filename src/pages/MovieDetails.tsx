@@ -453,7 +453,7 @@ export const MovieDetails = () => {
                         <FormProgress />
                         <MovieHeader released id={id} title={title} genre={genre} duration={duration} language={language} image={image} cast={cast} comments={comments} directors={directors} description={description} rating={rating} caption={caption}/>
                         <div className="flex flex-col items-end justify-center gap-2 self-stretch">
-                            <Button text={"Get Ticket"}/>
+                            <Button text={"Get Ticket"} onClick={() => navigate(`/booking/${id}`)}/>
                         </div>
                         <Cast cast={cast}/>
                         <MovieList heading={"More Movies"} movies={movies}/>
