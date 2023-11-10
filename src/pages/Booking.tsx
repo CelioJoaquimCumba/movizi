@@ -14,6 +14,7 @@ import { addTicket, getMovieById } from "../firebase/firestore";
 import { useEffect, useState } from "react";
 import { Payments } from "../components/organisms/Payments";
 import { useAuth } from "../firebase/auth";
+import { Loader } from "../components/organisms/Loader";
 
 const MovieData: Movie = {
     released: true,
@@ -89,6 +90,7 @@ export const Booking = () => {
     const [movie, setMovie ] = useState<Movie>(MovieData)
     const {id, cast,title, image, genre, duration, language, description, rating, comments, directors, caption} = movie
     const { isLoading } = useAuth()
+    const [isMovieLoading, setIsMovieLoading] = useState(true)
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const authUser: any = useAuth().authUser
     const navigate = useNavigate()
@@ -101,6 +103,7 @@ export const Booking = () => {
                     return
                 }
                 setMovie(movie)
+                setIsMovieLoading(false)
             }
         }
         fetchData()
@@ -115,6 +118,7 @@ export const Booking = () => {
     const [selectedSchedule, setSelectedSchedule] = useState("")
     const handleSchedule = (schedule:string) => setSelectedSchedule(schedule)
     const [ selectedSeats, setSelectedSeats] = useState<Array<string>>([])
+    
     const handleSeats = (seat:string) => {
         if(selectedSeats.find(s => s === seat)){
             setSelectedSeats(selectedSeats.filter(s => s !== seat))
@@ -206,6 +210,9 @@ export const Booking = () => {
     
         </div>
     )
+    if(isMovieLoading){
+        return <Loader/>
+    }
     return(
         <div className="w-full h-full">
             <div className="w-full h-full md:hidden">{phone}</div>

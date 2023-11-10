@@ -13,6 +13,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { useAuth } from "../firebase/auth";
 import { getMovieById, getMovies } from "../firebase/firestore";
 import { useEffect, useState } from "react";
+import { Loader } from "../components/organisms/Loader";
 
 const MovieData: Movie = {
     released: false,
@@ -393,6 +394,7 @@ export const MovieDetails = () => {
     const [movies, setMovies] = useState(moviesData)
     const {id, image, rating, title, comments, directors, cast, caption,duration, description,genre,language} = movie
     const { authUser, isLoading } = useAuth()
+    const [isMovieLoading, setIsMovieLoading] = useState(true)
     useEffect(()=>{
         async function fetchData() {
             // You can await here
@@ -404,6 +406,7 @@ export const MovieDetails = () => {
                 setMovie(movie)
                 const movies = await getMovies()
                 setMovies(movies.filter(movie=> movie.id !== movieId))
+                setIsMovieLoading(false)
             }
         }
         fetchData()
@@ -466,6 +469,9 @@ export const MovieDetails = () => {
 
         </div>
     )
+    if(isMovieLoading) {
+        return <Loader/>
+    }
     return(
         <div className="w-full h-full">
             <div className="w-full h-full md:hidden">{phone}</div>

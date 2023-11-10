@@ -8,6 +8,7 @@ import { Movie } from "../models/Movie";
 import { useAuth } from "../firebase/auth";
 import { useState, useEffect } from "react";
 import { getMovies } from "../firebase/firestore";
+import { Loader } from "../components/organisms/Loader";
 
 export const Home = () => {
     const { isLoading } = useAuth()
@@ -32,6 +33,7 @@ export const Home = () => {
     }])
     const {id, image, genre, duration, language, description} = movies[0]
     const navigate = useNavigate()
+    const [areMoviesLoading, setAreMoviesLoading] = useState(true)
     if(!isLoading && !authUser){
         navigate("/login")
     }
@@ -42,7 +44,7 @@ export const Home = () => {
             if(authUser){
                 const movies = await getMovies()
                 setMovies(movies)
-                console.log(movies)
+                setAreMoviesLoading(false)
             }
             // ...
         }
@@ -75,6 +77,9 @@ export const Home = () => {
                         </div>
                     </div>
     )
+    if(areMoviesLoading){
+        return <Loader/>
+    }
     return(
         <div className="flex flex-col items-center gap-2 bg-black w-full h-full ">
             {/* header for phone */}
