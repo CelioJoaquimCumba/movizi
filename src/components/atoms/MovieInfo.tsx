@@ -17,12 +17,12 @@ export const MovieInfo = ({id, date, schedule, movie, seats, image, isLoading}: 
         navigate(`/ticket/${id}`)
     }
     return(
-        <div onClick={handleClick} className={`flex p-4 justify-start items-start gap-4 rounded-xl bg-slate-900 hover:bg-slate-800 w-full ${isLoading && "animate-pulse dark:bg-slate-900"}`}>
+        <div onClick={handleClick} className={`flex p-4 justify-start items-center gap-4 rounded-xl bg-slate-900 hover:bg-slate-800 w-full ${isLoading && "animate-pulse dark:bg-slate-900"}`}>
             {isLoading ?
                 <MovieInfoSkeleton/>
                 :
                 <>
-                    <img className="rounded-xl object-cover w-32 aspect-square" src={image} alt={`${movie} ticket`}/>
+                    <img className="rounded-xl object-cover w-40 aspect-square" src={image} alt={`${movie} ticket`}/>
                     <div className="flex flex-col items-start gap-4 flex-grow">
                         <span className={`text-sm leading-5 font-semibold text-white self-stretch`}>{movie}</span>
                         <span className={`text-sm leading-5 font-semibold text-white self-stretch`}>{seats.map(seat=>seat)} seats</span>
