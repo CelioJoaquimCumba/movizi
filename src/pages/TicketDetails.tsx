@@ -15,7 +15,7 @@ export const TicketDetails = () => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const authUser:any = useAuth().authUser
     const [ticket, setTicket] = useState<TicketType>({uid:"",id:"",date:"",room:0,seats:[],movie:"",image:"",qrCode:"",schedule:""})
-    const  {uid, id, date, room, seats, movie, image, qrCode, schedule} = ticket
+    const [isLoadingTicket, setIsLoadingTicket] = useState(true)
     useEffect(()=>{
         async function fetchData() {
             // You can await here
@@ -25,7 +25,7 @@ export const TicketDetails = () => {
                     return
                 }
                 setTicket(ticket)
-                console.log(ticket)
+                setIsLoadingTicket(false)
             }
         }
         fetchData()
@@ -40,8 +40,8 @@ export const TicketDetails = () => {
             <NavBar/>
             <div className="flex flex-col px-1 gap-2 items-start self-stretch">
                 <Button text={"Download Ticket"} onClick={()=> toPDF()}/>
-                <div ref={targetRef} >
-                    <Ticket uid={uid} id={id} date={date} room={room} seats={seats} movie={movie} image={image} qrCode={qrCode} schedule={schedule}/>
+                <div ref={targetRef} className="w-full" >
+                    <Ticket ticket={ticket} isLoading={isLoadingTicket}/>
                 </div>
             </div>
             <Footer/>
