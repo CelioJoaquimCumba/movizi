@@ -12,7 +12,6 @@ export const CardMovie = ({id, image, title, genre, duration, language, ranking,
         navigate(`/movie/${id}`)
         navigate(0)
     }
-    console.log(type, orientation)
     return(
         <div onClick={handleClick} style={{ backgroundImage: `url(${type === "default" || orientation === "vertical" ? image.portrait: image.landscape}})`, backgroundSize: "cover" }} className={`  ${type === "default" || orientation === "vertical" ? "aspect-[3/4] h-full" : "aspect-[4/2]"} rounded-lg h-72 ${type === "rank" && "h-full"} ${type !== "rank" && "min-h-[16rem]"}  flex flex-col justify-end hover:cursor-pointer w-full`}>
                 { type === "default" ?

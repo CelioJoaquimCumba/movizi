@@ -19,9 +19,8 @@ export const addTicket = async ({id, date, room, seats, movie, image, qrCode, sc
         await updateDoc(movieRef, {
             bookings: updatedBookings,
         });
-        console.log("Movie bookings updated successfully");
         } catch (error) {
-        console.error("Error updating movie bookings:", error);
+            throw new Error(error as string);
         }
     } else {
         console.error("Movie not found");
@@ -179,9 +178,6 @@ export const addCommentToMovie = async (movieId:string, comment:Comment) => {
     await updateDoc(movieRef, {
       comments: updatedComments,
     });
-
-
-    console.log("Comment added successfully");
   } catch (error) {
     console.error("Error adding comment:", error);
   }

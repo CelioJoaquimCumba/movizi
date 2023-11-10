@@ -126,7 +126,6 @@ export const Booking = () => {
         }
     }
     const makePayment = async() => {
-        console.log(authUser)
         if(!authUser) return
         if(Math.floor(Math.random()*5) !== 0 ){
             try {

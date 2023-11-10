@@ -37,7 +37,6 @@ export const Home = () => {
     if(!isLoading && !authUser){
         navigate("/login")
     }
-    console.log(isLoading, authUser)
     useEffect(()=>{
         async function fetchData() {
             // You can await here
@@ -50,7 +49,6 @@ export const Home = () => {
         }
         fetchData()
     },[authUser])
-    console.log(movies)
     const header = (
         <div className="flex flex-col w-full h-full bg-gradient-to-t from-black to-transparent" >
                         <NavBar/>

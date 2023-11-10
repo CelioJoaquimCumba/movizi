@@ -345,7 +345,6 @@ export const PaymentSuccess = () => {
                     return
                 }
                 setTicket(ticket)
-                console.log(ticket)
             }
         }
         fetchData()

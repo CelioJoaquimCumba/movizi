@@ -8,7 +8,6 @@ type Tickets = {
 }
 
 export const Tickets = ({heading, tickets, isLoading}: Tickets) => {
-    console.log(isLoading)
     return(
         <div className="flex flex-col px-4 gap-2 items-start self-stretch w-full">
             {(isLoading || tickets.length> 0)  && <h1 className="text-xl leading-7 font-semibold text-white">{heading}</h1>}

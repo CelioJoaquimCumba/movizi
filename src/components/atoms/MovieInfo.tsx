@@ -13,7 +13,6 @@ type MovieInfo = {
 export const MovieInfo = ({id, date, schedule, movie, seats, image, isLoading}: MovieInfo) => {
     const navigate = useNavigate()
     const handleClick = () => {
-        console.log("here")
         navigate(`/ticket/${id}`)
     }
     return(
