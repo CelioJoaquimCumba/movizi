@@ -372,7 +372,7 @@ export const PaymentSuccess = () => {
                     <Button text={"Finish"} onClick={()=>navigate("/")}/>
                 </div>
                 <div ref={targetRef}>
-                    <Ticket uid={"id"} id={"id"} date={"01/11/2023"} room={0} seats={["A4","B4"]} movie={movie} image={image} qrCode={movie} schedule={"12h - 13 30m"}/>
+                    <Ticket ticket={ticket} isLoading={false}/>
                 </div>
                 <MovieList heading={"More Movies"} movies={movies}/>
                 
@@ -390,7 +390,7 @@ export const PaymentSuccess = () => {
                         <div className="flex flex-col items-center gap-4 self-stretch">
                             <div className="flex py-4 px-2 flex-col justify-end items-start gap-2 self-stretch rounded-lg">
                                 <MovieAspects heading={"Your booking of  '"+movie+"'"+ " was successfull"} text={"The ticket will be sent to your email and will also be stored in-app"}/>
-                                <Ticket uid="id" id={"id"} date={"01/11/2023"} room={0} seats={["A4","B4"]} movie={movie} image={image} qrCode={movie} schedule={"12h - 13 30m"}/>
+                                <Ticket ticket={ticket} isLoading={false}/>
                                 <div className="flex justify-end gap-4 items-start self-stretch w-full">
                                     <Button background="bg-slate-900 border-2 border-white" text={"Download Ticket"}/>
                                     <Button text={"Finish"}/>
