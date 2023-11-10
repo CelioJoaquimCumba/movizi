@@ -37,10 +37,10 @@ export const getMovies = async ():Promise<Movie[]> => {
     const movies = query(collection(db,MOVIE_COLLECTION))
     const querySnapshot = getDocs(movies)
 
-    const allTickets:Movie[] = []
+    const allMovies:Movie[] = []
     for (const documentSnapshot of (await querySnapshot).docs) {
         const movie = documentSnapshot.data()
-        allTickets.push({
+        allMovies.push({
             ...movie,
             id: documentSnapshot.id,
             title: movie.title,
@@ -49,7 +49,7 @@ export const getMovies = async ():Promise<Movie[]> => {
             language: movie.language,
             ranking: movie.ranking,
             image: movie.image,
-            bookings: movie.booking,
+            bookings: movie.bookings,
             rating: movie.rating,
             description: movie.description,
             directors: movie.directors,
@@ -59,7 +59,14 @@ export const getMovies = async ():Promise<Movie[]> => {
             released: movie.released
         })
     }
-    return allTickets
+    return allMovies.sort((a, b) => {
+    // Use the bookings property for comparison
+        const bookingsA = a.bookings || 0;
+        const bookingsB = b.bookings || 0;
+
+        // Sort in descending order
+        return bookingsB - bookingsA;
+        });
 
 }
 
