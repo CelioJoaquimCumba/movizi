@@ -86,7 +86,7 @@ const {startDate, endDate, schedules,soldSeats} = {
             soldSeats:["A1","A2"],
         }
 export const Booking = () => {
-    const movieId = useParams().id
+    const movieId = useParams().id || ""
     const [movie, setMovie ] = useState<Movie>(MovieData)
     const {id, cast,title, image, genre, duration, language, description, rating, comments, directors, caption} = movie
     const { isLoading } = useAuth()
