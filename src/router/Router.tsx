@@ -1,4 +1,4 @@
-import { createBrowserRouter } from 'react-router-dom';
+import { ScrollRestoration, createBrowserRouter } from 'react-router-dom';
 
 // Import your page components
 import { 
@@ -20,43 +20,43 @@ const router = createBrowserRouter([
     children: [
       {
         path: 'login',
-        element: <Login />
+        element: <><ScrollRestoration/><Login /></>
       },
       {
         path: 'register',
-        element: <Register />
+        element: <><ScrollRestoration/><Register /></>
       },
       {
         path: '',
-        element: <Home />
+        element: <><ScrollRestoration/><Home /></>
       },
       {
         path: 'movie/:id',
-        element: <MovieDetails />
+        element: <><ScrollRestoration/><MovieDetails /></>
       },
       {
         path: 'booking/:id',
-        element: <Booking />
+        element: <><ScrollRestoration/><Booking /></>
       },
       {
         path: 'payment',
-        element: <Payment />
+        element: <><ScrollRestoration/><Payment /></>
       },
       {
         path: 'payment-success/:id',
-        element: <PaymentSuccess />
+        element: <><ScrollRestoration/><PaymentSuccess /></>
       },
       {
         path: 'payment-failure',
-        element: <PaymentFailure />
+        element: <><ScrollRestoration/><PaymentFailure /></>
       },
       {
         path: 'tickets',
-        element: <Tickets />
+        element: <><ScrollRestoration/><Tickets /></>
       },
       {
         path: 'ticket/:id',
-        element: <TicketDetails />
+        element: <><ScrollRestoration/><TicketDetails /></>
       },
     ]
   },
