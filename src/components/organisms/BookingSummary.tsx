@@ -21,7 +21,7 @@ export const BookingSummary = ({items}: BookingSummary) => {
                     })}
                 </div>
                 <div className="flex flex-col justify-center items-center gap-2 self-stretch bg-slate-900 rounded">
-                    <BookingItem item="Total" price={total} quantity={0} />
+                    <BookingItem item="Total" price={total} quantity={1} />
                 </div>
 
             </div>
