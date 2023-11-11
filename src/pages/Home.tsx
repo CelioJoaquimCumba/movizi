@@ -88,8 +88,8 @@ export const Home = () => {
             <div style={{ backgroundImage: `url(${image.landscape}})`, backgroundSize: "cover" }} className={`hidden md:flex flex-col items-start gap-2 self-stretch`}>
                 {header}
             </div>
-            <div className="flex flex-col px-4 gap-2 self-stretch items-center ">
-                <div className="flex flex-col w-full h-full max-w-7xl">
+            <div className="flex flex-col px-4 self-stretch items-center ">
+                <div className="flex flex-col w-full h-full max-w-7xl gap-4 ">
                     <TopMovies movies={movies}/>
                     <MovieList heading={"Now Showing"} movies={movies.filter(movie=>movie.released)}/>
                     <MovieList heading={"Coming Soon"} movies={movies.filter(movie=> !movie.released)}/>
