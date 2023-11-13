@@ -5,12 +5,17 @@ type MovieChartItem = {
     ranking: number,
     bookings: number,
     title: string,
-    image: string
+    image: string,
+    navigateTo?: string
 }
 
-export const MovieChartItem = ({ranking, bookings, title, id, image}: MovieChartItem) => {
+export const MovieChartItem = ({ranking, bookings, title, id, image,navigateTo}: MovieChartItem) => {
     const navigate = useNavigate()
     const handleClick = () => {
+        if(navigateTo){
+            navigate(navigateTo)
+            return
+        }
         navigate(`/movie/${id}`)
     }
     return(
