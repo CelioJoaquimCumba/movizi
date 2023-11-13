@@ -34,7 +34,7 @@ export const TicketDetails = () => {
     if(!isLoading && !authUser){
         navigate("/login")
     }
-    const { toPDF, targetRef } = usePDF({filename: 'page.pdf'});
+    const { toPDF, targetRef } = usePDF({filename: `${ticket.movie}-ticket.pdf`})
     return(
         <div className="flex flex-col items-start gap-2 w-full h-full min-h-screen bg-black">
             <NavBar/>

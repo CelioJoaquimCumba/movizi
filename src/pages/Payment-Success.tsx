@@ -25,7 +25,7 @@ export const PaymentSuccess = () => {
     }
     const { movie, image } = ticket
     const navigate = useNavigate()
-    const { toPDF, targetRef } = usePDF({filename: 'page.pdf'});
+    const { toPDF, targetRef } = usePDF({filename: `${movie}-ticket.pdf`});
     useEffect(()=>{
         async function fetchData() {
             // You can await here
@@ -66,7 +66,6 @@ export const PaymentSuccess = () => {
                     <Ticket ticket={ticket} isLoading={false}/>
                 </div>
                 <MovieList heading={"More Movies"} movies={movies}/>
-                
                 <Footer/>
             </div>
         </div>
