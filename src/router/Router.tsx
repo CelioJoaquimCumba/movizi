@@ -13,6 +13,7 @@ import {
   Tickets, 
   TicketDetails 
 } from '../pages';
+import { Admin } from '../pages/Admin';
 
 const router = createBrowserRouter([
   {
@@ -58,6 +59,10 @@ const router = createBrowserRouter([
         path: 'ticket/:id',
         element: <><ScrollRestoration/><TicketDetails /></>
       },
+      {
+        path: '/admin',
+        element: <><ScrollRestoration/><Admin /></>
+      }
     ]
   },
   {
