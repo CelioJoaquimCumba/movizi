@@ -29,7 +29,6 @@ export const DatePicker = ({startDate,endDate, updateDate}:DatePicker) => {
     const [days, setDays]  = useState(getDaysOfMonth(year,month))
     const [selectedDate, setSelectedDate] = useState("")
     const [isOpen, setIsOpen] = useState(false)
-    console.log(startDate)
     let startAt = 0
     if(startDate.year === year){
         if (startDate.month === month) {
