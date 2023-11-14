@@ -13,7 +13,8 @@ import {
   Tickets, 
   TicketDetails 
 } from '../pages';
-import { Admin } from '../pages/Admin';
+import { Admin } from '../pages/Admin/Admin';
+import { AdminMovieDetails } from '../pages/Admin/MovieDetails';
 
 const router = createBrowserRouter([
   {
@@ -59,11 +60,29 @@ const router = createBrowserRouter([
         path: 'ticket/:id',
         element: <><ScrollRestoration/><TicketDetails /></>
       },
-      {
-        path: '/admin',
-        element: <><ScrollRestoration/><Admin /></>
-      }
     ]
+  },
+  {
+        path: '/admin',
+        children: [
+          {
+            path: '',
+            element: <><ScrollRestoration/><Admin /></>
+          },
+          {
+            path: 'movie',
+            children: [
+              {
+                path: '',
+                element: <><ScrollRestoration/><AdminMovieDetails /></>
+              },
+              {
+                path: ':id',
+                element: <><ScrollRestoration/><AdminMovieDetails /></>
+              }
+            ]
+          },
+        ]
   },
   {
     path: '/*',

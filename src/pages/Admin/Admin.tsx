@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react"
-import { NavBar } from "../components/molecules/NavBar"
-import { Movie } from "../models/Movie"
-import { Loader } from "../components/organisms/Loader"
-import { getMovies } from "../firebase/firestore"
-import { Button } from "../components/atoms/Button"
-import { MovieChartItem } from "../components/atoms/MovieChartItem"
+import { NavBar } from "../../components/molecules/NavBar"
+import { Movie } from "../../models/Movie"
+import { Loader } from "../../components/organisms/Loader"
+import { getMovies } from "../../firebase/firestore"
+import { Button } from "../../components/atoms/Button"
+import { MovieChartItem } from "../../components/atoms/MovieChartItem"
 import { useNavigate } from "react-router-dom"
+import { admins } from "../../utils/admins"
+import { useAuth } from "../../firebase/auth"
 
 export const Admin = () => {
     const [movies, setMovies] = useState<Array<Movie>>([
@@ -36,16 +38,20 @@ export const Admin = () => {
         }
         fetchData()
     })
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const user: any = useAuth().authUser
     if(areMoviesLoading){
         return <Loader/>
     }
-    
+    if(!admins.includes(user.email)  && user?.email) {
+        return <>Unauthorized</>
+    }
     return(
         <div className="w-full h-full min-h-screen flex flex-col bg-black text-white">
             <NavBar/>
             <div className="flex w-full h-full flex-col p-4">
                 <div className="flex justify-end">
-                    <Button text={"Add movie"} onClick={() => navigate("/admin/movie/add")}/>
+                    <Button text={"Add movie"} onClick={() => navigate("/admin/movie")}/>
                 </div>
                 <h1 className="text-xl leading-7 font-semibold text-white">Movies</h1>
                 <div className="flex flex-col gap-2">

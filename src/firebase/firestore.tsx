@@ -1,4 +1,4 @@
-import { addDoc, collection, doc, getDoc, getDocs, query, updateDoc, where } from "firebase/firestore";
+import { addDoc, collection, doc, getDoc, getDocs, query, setDoc, updateDoc, where } from "firebase/firestore";
 import { db } from "./firebase"
 import { Ticket } from "../models/Ticket";
 import { Movie } from "../models/Movie";
@@ -181,6 +181,61 @@ export const addCommentToMovie = async (movieId:string, comment:Comment) => {
   } catch (error) {
     console.error("Error adding comment:", error);
   }
+};
+
+export const addMovie = async (movieId: string, movie: Movie): Promise<string> => {
+  const movieRef = doc(db, MOVIE_COLLECTION, movieId);
+  const movieSnap = await getDoc(movieRef);
+
+  if (movieSnap.exists()) {
+    // Movie already exists, update it
+    try {
+      await updateDoc(movieRef, {
+        title: movie.title,
+        genre: movie.genre,
+        duration: movie.duration,
+        language: movie.language,
+        ranking: movie.ranking,
+        image: movie.image,
+        bookings: movie.bookings,
+        rating: movie.rating,
+        description: movie.description,
+        directors: movie.directors,
+        caption: movie.caption,
+        cast: movie.cast,
+        comments: movie.comments,
+        released: movie.released,
+      });
+    } catch (error) {
+      console.error("Error updating movie:", error);
+      throw new Error(error as string);
+    }
+  } else {
+    // Movie does not exist, create it
+    try {
+      await setDoc(movieRef, {
+        title: movie.title,
+        genre: movie.genre,
+        duration: movie.duration,
+        language: movie.language,
+        ranking: movie.ranking,
+        image: movie.image,
+        bookings: movie.bookings,
+        rating: movie.rating,
+        description: movie.description,
+        directors: movie.directors,
+        caption: movie.caption,
+        cast: movie.cast,
+        comments: movie.comments,
+        released: movie.released,
+      });
+    } catch (error) {
+      console.error("Error adding movie:", error);
+      throw new Error(error as string);
+    }
+  }
+
+  return movieRef.id;
 };
 
 
