@@ -29,7 +29,7 @@ export const DatePicker = ({startDate,endDate, updateDate}:DatePicker) => {
     const [days, setDays]  = useState(getDaysOfMonth(year,month))
     const [selectedDate, setSelectedDate] = useState("")
     const [isOpen, setIsOpen] = useState(false)
-
+    console.log(startDate)
     let startAt = 0
     if(startDate.year === year){
         if (startDate.month === month) {
@@ -48,6 +48,9 @@ export const DatePicker = ({startDate,endDate, updateDate}:DatePicker) => {
     if(endDate.year === year){
         if (endDate.month === month) {
             endAt = endDate.day
+        }
+        else if (endDate.month > month) {
+            endAt = 32
         }
         else {
             endAt = 0
